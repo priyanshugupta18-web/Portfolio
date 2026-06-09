@@ -1,0 +1,32 @@
+@import "tailwindcss";
+@plugin "tailwind-scrollbar-hide";
+
+body {
+  font-family: "poppins", sans-serif;
+}
+
+h1, h2 {
+  font-family: "Roboto", sans-serif;
+}
+
+@layer utilities{
+    .text-gradient{
+        background: linear-gradient(
+            135deg,
+            #7dd3fc 0%,
+            #ffffff 35%,
+            #38bdf8 70%,
+            #e0f2fe 100%
+        );
+
+        background-clip: text; 
+        -webkit-background-clip: text;
+        color: transparent;
+    }
+}
+
+@layer utilities {
+  .gradient {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+  }
+}
