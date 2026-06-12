@@ -2,31 +2,75 @@
 @plugin "tailwind-scrollbar-hide";
 
 body {
-  font-family: "poppins", sans-serif;
+    font-family: "poppins", sans-serif;
 }
 
-h1, h2 {
-  font-family: "Roboto", sans-serif;
+h1,
+h2 {
+    font-family: "Roboto", sans-serif;
 }
 
-@layer utilities{
-    .text-gradient{
-        background: linear-gradient(
-            135deg,
-            #7dd3fc 0%,
-            #ffffff 35%,
-            #38bdf8 70%,
-            #e0f2fe 100%
-        );
+@layer utilities {
+    .text-gradient {
+        background: linear-gradient(135deg,
+                #7dd3fc 0%,
+                #ffffff 35%,
+                #38bdf8 70%,
+                #e0f2fe 100%);
 
-        background-clip: text; 
+        background-clip: text;
         -webkit-background-clip: text;
         color: transparent;
     }
 }
 
 @layer utilities {
-  .gradient {
-    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
-  }
+    .grad {
+        background: linear-gradient(135deg,
+                #7dd3fc 0%,
+                #ffffff 35%,
+                #38bdf8 70%,
+                #e0f2fe 100%);
+    }
+}
+
+@layer utilities {
+    .gradient {
+        background:
+            radial-gradient(circle at 70% 70%, rgba(59, 130, 246, 0.15), transparent 25%),
+            linear-gradient(135deg,
+                #020617 0%,
+                #0f172a 35%,
+                #172554 70%,
+                #1e293b 100%);
+    }
+}
+
+html {
+    min-height: 100dvh;
+    margin: 0;
+    background:
+        radial-gradient(circle at 70% 70%, rgba(59, 130, 246, 0.15), transparent 25%),
+        linear-gradient(135deg,
+            #020617 0%,
+            #0f172a 35%,
+            #172554 70%,
+            #1e293b 100%);
+    background-attachment: fixed;
+    color: white;
+    overflow-x: hidden;
+}
+
+.about-bg {
+    background:
+        radial-gradient(circle at 72% 45%,
+            rgba(56, 189, 248, 0.14),
+            transparent 28%),
+        radial-gradient(circle at 15% 80%,
+            rgba(59, 130, 246, 0.08),
+            transparent 25%),
+        linear-gradient(135deg,
+            #020617 0%,
+            #0f172a 45%,
+            #172554 100%);
 }

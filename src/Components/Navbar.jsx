@@ -6,26 +6,18 @@ import { FiMenu } from "react-icons/fi";
 import { FiX } from "react-icons/fi";
 
 export default function Navbar() {
-  const [isHome, setIsHome] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsHome(scrollY < window.innerHeight * 0.9);
-    };
-
-    addEventListener("scroll", handleScroll);
-
-    return () => {
-      removeEventListener("scroll", handleScroll);
-    };
-  }, []);
   return (
     <>
       <div
-        className={`flex z-50 justify-between lg:justify-around items-center sticky transition-all duration-500 ${
-          isHome ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-10"
-        } top-0 left-0 p-2 w-full h-18 backdrop-blur-2xl`}
+        className={`sticky top-0 left-0 z-50 w-full h-18 p-2
+              bg-[rgba(15,27,47,0.72)]
+                backdrop-blur-2xl
+                border-b border-cyan-400/10
+                shadow-[0_0_30px_rgba(56,189,248,0.08)]
+                transition-all duration-500
+                flex justify-between md:justify-around items-center`}
       >
         <div className="flex justify-center items-center">
           <img className="h-14 w-20 object-cover" src={logo} alt="Logo" />
@@ -88,7 +80,7 @@ export default function Navbar() {
             onClick={() => setIsOpen(!isOpen)}
             className="lg:hidden text-white pr-2 cursor-pointer"
           >
-            {isOpen ?  <FiX size={24} />: <FiMenu size={24} />}
+            {isOpen ? <FiX size={24} /> : <FiMenu size={24} />}
           </button>
         </div>
       </div>
@@ -101,7 +93,9 @@ export default function Navbar() {
           to="/"
           onClick={() => setIsOpen(false)}
           className={({ isActive }) => {
-            return isActive ? "underline text-white" : "text-gradient";
+            return isActive 
+            ? "underline text-white" 
+            : "text-gradient";
           }}
         >
           Home
