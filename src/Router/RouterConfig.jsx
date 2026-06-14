@@ -5,6 +5,7 @@ import About from "../Sections/About";
 import Lab from "../Sections/Lab";
 import Stack from "../Sections/Stack";
 import Projects from "../Sections/Projects";
+import ProjectDetail from "../Sections/ProjectDetail";
 import Contact from "../Sections/Contact";
 
 const router = createBrowserRouter([
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
       {
         path: "projects",
         element: < Projects />,
+      },
+      {
+        path: "projects/:slug",
+        element: < ProjectDetail />,
       },
       {
         path: "contact",

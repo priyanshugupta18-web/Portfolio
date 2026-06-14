@@ -3,12 +3,45 @@ import Hero from "../assets/Hero.png";
 import { easeOut, motion, useScroll, useTransform } from "framer-motion";
 import AboutMeSnippet from "../Components/AboutMeSnippet";
 import { FiArrowRight } from "react-icons/fi";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import InfiniteMarquee from "../Components/InfiniteMarquee";
+import Cards from "../Components/Cards";
+import { featuredProjects } from "../data/projects";
 
 export default function Home() {
   const heroRef = useRef(null);
   const aboutRef = useRef(null);
+  const cardRef = useRef(null);
+  const cardsInnerRef = useRef(null);
+  const [scrollDistance, setScrollDistance] = useState(0);
+
+  const { scrollYProgress } = useScroll({
+    target: cardRef,
+    offset: ["start -40%", "end end"],
+  });
+
+  const cardX = useTransform(scrollYProgress, [0, 1], [0, -scrollDistance]);
+
+  useEffect(() => {
+    const cardsEl = cardsInnerRef.current;
+    if (!cardsEl) return;
+
+    const updateScrollDistance = () => {
+      const totalWidth = cardsEl.scrollWidth;
+      setScrollDistance(Math.max(0, totalWidth - window.innerWidth + 48));
+    };
+
+    updateScrollDistance();
+
+    const resizeObserver = new ResizeObserver(updateScrollDistance);
+    resizeObserver.observe(cardsEl);
+    window.addEventListener("resize", updateScrollDistance);
+
+    return () => {
+      resizeObserver.disconnect();
+      window.removeEventListener("resize", updateScrollDistance);
+    };
+  }, []);
 
   const { scrollYProgress: heroScroll } = useScroll({
     target: heroRef,
@@ -318,6 +351,47 @@ export default function Home() {
 
         <div className="mt-20">
           <InfiniteMarquee />
+        </div>
+      </section>
+      <section
+        ref={cardRef}
+        className="relative about-bg"
+        style={{ height: `${featuredProjects.length * 55 + 100}vh` }}
+      >
+        <div className="px-6 pt-24 pb-10 lg:px-16">
+          <motion.div
+            initial={{ x: -120, opacity: 0 }}
+            whileInView={{ x: 0, opacity: 1 }}
+            viewport={{ amount: 0.3, once: true }}
+            transition={{ duration: 1.2, ease: easeOut, delay: 0.15 }}
+            className="text-center text-5xl font-light text-gradient md:text-6xl lg:text-7xl"
+          >
+            Featured Projects
+          </motion.div>
+
+          <motion.div
+            initial={{ scaleX: 0, opacity: 0 }}
+            whileInView={{ scaleX: 1, opacity: 1 }}
+            style={{ originX: 0.5 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 1.2, ease: easeOut, delay: 0.2 }}
+            className="mx-auto mt-6 h-[1.5px] w-32 bg-sky-300"
+          />
+
+          <motion.p
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.9, ease: easeOut, delay: 0.3 }}
+            className="mx-auto mt-8 max-w-2xl text-center text-base leading-8 text-slate-300 md:text-lg"
+          >
+            Scroll through a curated set of apps, games, and experiments — from
+            full-stack platforms to UI clones and machine learning tools.
+          </motion.p>
+        </div>
+
+        <div className="sticky top-0 flex h-screen items-center overflow-hidden">
+          <Cards x={cardX} innerRef={cardsInnerRef} />
         </div>
       </section>
     </>

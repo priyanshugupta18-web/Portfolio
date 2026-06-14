@@ -12,7 +12,7 @@ import Stack from "../Sections/Stack";
 
 export default function RootLayout() {
   return (
-    <div className="min-h-dvh text-white overflow-x-hidden">
+    <div className="min-h-dvh text-white">
       <ParticlesBackground />
       <div className="relative z-10">
         <Navbar />

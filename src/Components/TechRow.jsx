@@ -5,12 +5,16 @@ import {
   SiTailwindcss,
   SiHtml5,
   SiCss,
+  SiPython,
+  SiCplusplus,
 } from "react-icons/si";
 
 const techs = [
   { name: "HTML", icon: SiHtml5 },
   { name: "CSS", icon: SiCss },
   { name: "JavaScript", icon: SiJavascript },
+  { name: "Python", icon: SiPython },
+  { name: "C++", icon: SiCplusplus },
   { name: "Tailwind CSS", icon: SiTailwindcss },
   { name: "React.js", icon: FaReact },
   { name: "Framer Motion", icon: SiFramer },

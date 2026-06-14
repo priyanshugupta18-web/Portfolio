@@ -2,6 +2,7 @@
 @plugin "tailwind-scrollbar-hide";
 
 body {
+    overflow-x: hidden;
     font-family: "poppins", sans-serif;
 }
 
@@ -58,7 +59,6 @@ html {
             #1e293b 100%);
     background-attachment: fixed;
     color: white;
-    overflow-x: hidden;
 }
 
 .about-bg {

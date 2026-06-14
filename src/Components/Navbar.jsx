@@ -1,6 +1,6 @@
 import logo from "../assets/logo.png";
 import "../index.css";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { FiMenu } from "react-icons/fi";
 import { FiX } from "react-icons/fi";
@@ -36,7 +36,7 @@ export default function Navbar() {
               <li>Home</li>
             </NavLink>
             <NavLink
-              to="/About"
+              to="/about"
               className={({ isActive }) => {
                 return isActive ? "underline text-white" : "text-gradient";
               }}
@@ -44,7 +44,7 @@ export default function Navbar() {
               <li>About</li>
             </NavLink>
             <NavLink
-              to="/Lab"
+              to="/lab"
               className={({ isActive }) => {
                 return isActive ? "underline text-white" : "text-gradient";
               }}
@@ -52,7 +52,7 @@ export default function Navbar() {
               <li>Lab</li>
             </NavLink>
             <NavLink
-              to="/Stack"
+              to="/stack"
               className={({ isActive }) => {
                 return isActive ? "underline text-white" : "text-gradient";
               }}
@@ -60,7 +60,7 @@ export default function Navbar() {
               <li>Skills</li>
             </NavLink>
             <NavLink
-              to="/Projects"
+              to="/projects"
               className={({ isActive }) => {
                 return isActive ? "underline text-white" : "text-gradient";
               }}
@@ -68,7 +68,7 @@ export default function Navbar() {
               <li>Projects</li>
             </NavLink>
             <NavLink
-              to="/Contact"
+              to="/contact"
               className={({ isActive }) => {
                 return isActive ? "underline text-white" : "text-gradient";
               }}
@@ -101,7 +101,7 @@ export default function Navbar() {
           Home
         </NavLink>
         <NavLink
-          to="/About"
+          to="/about"
           onClick={() => setIsOpen(false)}
           className={({ isActive }) => {
             return isActive ? "underline text-white" : "text-gradient";
@@ -110,7 +110,7 @@ export default function Navbar() {
           About
         </NavLink>
         <NavLink
-          to="/Lab"
+          to="/lab"
           onClick={() => setIsOpen(false)}
           className={({ isActive }) => {
             return isActive ? "underline text-white" : "text-gradient";
@@ -119,7 +119,7 @@ export default function Navbar() {
           Lab
         </NavLink>
         <NavLink
-          to="/Stack"
+          to="/stack"
           onClick={() => setIsOpen(false)}
           className={({ isActive }) => {
             return isActive ? "underline text-white" : "text-gradient";
@@ -128,7 +128,7 @@ export default function Navbar() {
           Skills
         </NavLink>
         <NavLink
-          to="/Projects"
+          to="/projects"
           onClick={() => setIsOpen(false)}
           className={({ isActive }) => {
             return isActive ? "underline text-white" : "text-gradient";
@@ -137,7 +137,7 @@ export default function Navbar() {
           Projects
         </NavLink>
         <NavLink
-          to="/Contact"
+          to="/contact"
           onClick={() => setIsOpen(false)}
           className={({ isActive }) => {
             return isActive ? "underline text-white" : "text-gradient";
