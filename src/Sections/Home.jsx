@@ -4,6 +4,7 @@ import { easeOut, motion, useScroll, useTransform } from "framer-motion";
 import AboutMeSnippet from "../Components/AboutMeSnippet";
 import { FiArrowRight } from "react-icons/fi";
 import { useRef } from "react";
+import InfiniteMarquee from "../Components/InfiniteMarquee";
 
 export default function Home() {
   const heroRef = useRef(null);
@@ -129,13 +130,13 @@ export default function Home() {
               Web Experiences
             </motion.div>
 
-            <motion.div 
-            initial={{
-                x:-30,
+            <motion.div
+              initial={{
+                x: -30,
                 opacity: 0,
               }}
               animate={{
-                x:0,
+                x: 0,
                 opacity: 1,
               }}
               transition={{
@@ -143,15 +144,16 @@ export default function Home() {
                 ease: easeOut,
                 delay: 0.6,
               }}
-            className="h-0.5 w-12 mt-8 grad"></motion.div>
+              className="h-0.5 w-12 mt-8 grad"
+            ></motion.div>
 
-            <motion.div 
-            initial={{
-                x:-30,
+            <motion.div
+              initial={{
+                x: -30,
                 opacity: 0,
               }}
               animate={{
-                x:0,
+                x: 0,
                 opacity: 1,
               }}
               transition={{
@@ -159,18 +161,19 @@ export default function Home() {
                 ease: easeOut,
                 delay: 0.7,
               }}
-            className="mt-8 lg:max-w-150 text-sm tracking-widest text-white font-normal">
+              className="mt-8 lg:max-w-150 text-sm tracking-widest text-white font-normal"
+            >
               I Craft modern web experiences while continuously exploring the
               art of software engineering.
             </motion.div>
 
-            <motion.div 
-            initial={{
-                x:-30,
+            <motion.div
+              initial={{
+                x: -30,
                 opacity: 0,
               }}
               animate={{
-                x:0,
+                x: 0,
                 opacity: 1,
               }}
               transition={{
@@ -178,7 +181,8 @@ export default function Home() {
                 ease: easeOut,
                 delay: 0.85,
               }}
-            className="flex items-center gap-5 mt-8">
+              className="flex items-center gap-5 mt-8"
+            >
               <NavLink
                 to="/projects"
                 className="md:px-6 md:py-3 px-3 py-2 rounded-full bg-sky-400 text-slate-950 font-medium tracking-wide shadow-[0_0_25px_rgba(56,189,248,0.35)] hover:bg-sky-300 hover:shadow-[0_0_35px_rgba(56,189,248,0.55)] transition-all duration-300"
@@ -290,6 +294,30 @@ export default function Home() {
 
         <div className="mt-16 lg:mt-0">
           <AboutMeSnippet />
+        </div>
+      </section>
+      <section className="my-20 border-y border-white/10 bg-white/[0.03] shadow-xl backdrop-blur-md py-24 overflow-hidden">
+        <motion.div
+          initial={{ x: -120, opacity: 0 }}
+          whileInView={{ x: 0, opacity: 1 }}
+          viewport={{ amount: 0.3, once: true }}
+          transition={{ duration: 1.2, ease: easeOut, delay: 0.15 }}
+          className="text-gradient font-light tracking-normal text-5xl md:text-6xl lg:text-7xl text-center"
+        >
+          What Stack do I use?
+        </motion.div>
+
+        <motion.div
+          initial={{ scaleX: 0, opacity: 0 }}
+          whileInView={{ scaleX: 1, opacity: 1 }}
+          style={{ originX: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 1.2, ease: easeOut, delay: 0.2 }}
+          className="mt-6 h-[1.5px] w-32 bg-sky-300 mx-auto"
+        />
+
+        <div className="mt-20">
+          <InfiniteMarquee />
         </div>
       </section>
     </>

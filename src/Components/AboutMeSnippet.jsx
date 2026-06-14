@@ -1,5 +1,6 @@
-import React from "react";
 import { useTransform, useScroll, motion } from "framer-motion";
+import RedoAnimateText from "./RedoAnimateText";
+import Blinker from "./Blinker";
 import { useRef } from "react";
 
 export default function AboutMeSnippet() {
@@ -46,7 +47,7 @@ export default function AboutMeSnippet() {
 
           <div className="pl-6">
             <span className="text-slate-400">role:</span>{" "}
-            <span className="text-emerald-400">'Frontend Developer'</span>,
+            <RedoAnimateText /><Blinker/>
           </div>
 
           <div className="pl-6">
