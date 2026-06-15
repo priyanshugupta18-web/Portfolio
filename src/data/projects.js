@@ -6,7 +6,7 @@ import {
   rockPaperScissors,
   ticTacToe,
   flipkartUIClone,
-} from "../assets/thumbnails";
+} from "../assets/Thumbnails";
 
 export const featuredProjects = [
   {
