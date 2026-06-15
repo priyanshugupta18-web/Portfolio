@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Local documentation
+HOME_PAGE_CHANGES.md

@@ -2,8 +2,21 @@
 @plugin "tailwind-scrollbar-hide";
 
 body {
+    width: 100%;
+    max-width: 100vw;
     overflow-x: hidden;
     font-family: "poppins", sans-serif;
+}
+
+#root {
+    width: 100%;
+    overflow-x: clip;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
 }
 
 h1,

@@ -36,7 +36,7 @@ export const featuredProjects = [
     description:
       "ML app that predicts student performance from educational datasets.",
     overview:
-      "A machine learning application that predicts student academic performance using classification and regression models trained on educational datasets. Explores data preprocessing, model training, and interactive result visualization.",
+      "A machine learning application that predicts student academic performance using regression model trained on educational datasets. Explores data preprocessing, model training, and interactive result visualization.",
     highlights: [
       "Dataset preprocessing with Pandas",
       "Classification & regression models",
@@ -46,7 +46,7 @@ export const featuredProjects = [
     thumbnail: studentGradePredictor,
     githubUrl:
       "https://github.com/priyanshugupta18-web/student-performance-predictor",
-    liveUrl: "https://student-performance-predictor18.streamlit.app/",
+    liveUrl: null,
   },
   {
     slug: "currency-converter",
@@ -54,7 +54,7 @@ export const featuredProjects = [
     category: "React App",
     techStack: ["React", "API Integration", "Hooks"],
     description:
-      "Live exchange-rate converter built with React and REST APIs.",
+      "Live exchange-rate converter built with React.",
     overview:
       "A React-based currency conversion tool that fetches live exchange rates and delivers accurate real-time conversions across multiple currencies. Focused on clean state management and responsive UI.",
     highlights: [
@@ -111,13 +111,13 @@ export const featuredProjects = [
     category: "Browser Game",
     techStack: ["JavaScript", "DOM", "Event Handling"],
     description:
-      "Classic two-player game with turn logic and winner detection.",
+      "Classic two-player game with clean logic and winner detection.",
     overview:
-      "A classic strategy game built to practice state management, turn-based logic, winner detection, and interactive UI development. Includes win/draw detection and a reset flow.",
+      "A classic strategy game built to practice state management, winner detection, and interactive UI development. Includes win/draw detection and a reset flow.",
     highlights: [
-      "Turn-based game state",
+      "DOM manipulation and Event Handling",
       "Win & draw detection",
-      "Interactive grid UI",
+      "Interactive flex UI",
       "Reset and replay flow",
     ],
     thumbnail: ticTacToe,
@@ -130,12 +130,12 @@ export const featuredProjects = [
     category: "UI Clone",
     techStack: ["HTML", "Tailwind", "Responsive Design"],
     description:
-      "Responsive e-commerce UI inspired by Flipkart's layout and components.",
+      "Responsive e-commerce UI inspired by Flipkart's layout.",
     overview:
-      "A responsive e-commerce interface inspired by Flipkart, focused on layout design, component structure, and modern frontend practices. Recreates key UI patterns like navbars, product cards, and promotional banners.",
+      "A responsive e-commerce interface inspired by Flipkart, focused on layout design and modern frontend practices. Recreates key UI patterns like navbars, product cards, and promotional banners.",
     highlights: [
       "Flipkart-inspired layout",
-      "Responsive product grid",
+      "Responsive card designs",
       "Navbar & banner sections",
       "Mobile-first Tailwind styling",
     ],

@@ -14,12 +14,12 @@ export default function Cards({ x, innerRef }) {
     <motion.div
       ref={innerRef}
       style={{ x }}
-      className="flex items-stretch gap-3 p-3"
+      className="flex w-full flex-col items-stretch gap-5 md:w-max md:flex-row md:gap-3 md:p-3"
     >
       {featuredProjects.map((project) => (
         <article
           key={project.slug}
-          className="flex min-w-80 flex-col overflow-hidden rounded-2xl border border-sky-400/30 bg-white/[0.03] backdrop-blur-md md:min-w-[360px]"
+          className="flex w-full min-w-0 flex-col overflow-hidden rounded-2xl border border-sky-400/30 bg-white/[0.03] backdrop-blur-md md:w-auto md:min-w-[360px]"
         >
           <div className="p-3">
             <img

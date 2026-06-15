@@ -31,7 +31,7 @@ export default function TechRow() {
         return (
           <div
             key={tech.name}
-            className="mx-4 flex items-center gap-1 rounded-xl border border-white/10 px-6 py-6"
+            className="mx-2 flex items-center gap-2 rounded-xl border border-white/10 px-4 py-4 sm:mx-4 sm:px-6 sm:py-6"
           >
             <Icon size={22} />
             <span>{tech.name}</span>
