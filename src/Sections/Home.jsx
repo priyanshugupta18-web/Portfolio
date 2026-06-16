@@ -34,10 +34,6 @@ export default function Home() {
   const revealDuration = shouldReduceMotion ? 0 : isMobile ? 0.6 : isTablet ? 0.85 : 1.2;
   const heroRef = useRef(null);
   const aboutRef = useRef(null);
-  const cardRef = useRef(null);
-  const cardsInnerRef = useRef(null);
-  const [scrollDistance, setScrollDistance] = useState(0);
-  const [cardSectionHeight, setCardSectionHeight] = useState("auto");
 
   const expRef = useRef(null);
   const [expParticles] = useState(() =>
@@ -68,45 +64,6 @@ export default function Home() {
     window.addEventListener("resize", updateViewportMode);
     return () => window.removeEventListener("resize", updateViewportMode);
   }, []);
-
-  const { scrollYProgress } = useScroll({
-    target: cardRef,
-    offset: ["start -40%", "end end"],
-  });
-
-  const cardX = useTransform(scrollYProgress, [0, 1], [0, -scrollDistance]);
-
-  useEffect(() => {
-    const cardsEl = cardsInnerRef.current;
-    if (!cardsEl) return;
-
-    const updateScrollDistance = () => {
-      if (window.innerWidth < 768) {
-        setScrollDistance(0);
-        setCardSectionHeight("auto");
-        return;
-      }
-
-      const totalWidth = cardsEl.scrollWidth;
-      const distance = Math.max(0, totalWidth - window.innerWidth + 48);
-
-      setScrollDistance(distance);
-      setCardSectionHeight(
-        `${Math.max(window.innerHeight * 2.25, distance + window.innerHeight + 360)}px`,
-      );
-    };
-
-    updateScrollDistance();
-
-    const resizeObserver = new ResizeObserver(updateScrollDistance);
-    resizeObserver.observe(cardsEl);
-    window.addEventListener("resize", updateScrollDistance);
-
-    return () => {
-      resizeObserver.disconnect();
-      window.removeEventListener("resize", updateScrollDistance);
-    };
-  }, [viewportMode]);
 
   const { scrollYProgress: heroScroll } = useScroll({
     target: heroRef,
@@ -454,11 +411,7 @@ export default function Home() {
           <InfiniteMarquee />
         </div>
       </section>
-      <section
-        ref={cardRef}
-        className="relative overflow-hidden about-bg"
-        style={{ height: cardSectionHeight }}
-      >
+      <section className="relative overflow-hidden about-bg">
         <div className="px-6 pt-24 pb-10 lg:px-16">
           <motion.div
             initial={{ x: entryDistance, opacity: 0 }}
@@ -505,8 +458,8 @@ export default function Home() {
           </motion.p>
         </div>
 
-        <div className="flex items-center overflow-hidden px-4 pb-20 md:sticky md:top-0 md:h-screen md:px-0 md:pb-0">
-          <Cards x={isMobile ? 0 : cardX} innerRef={cardsInnerRef} />
+        <div className="mx-auto max-w-7xl px-4 pb-20 sm:px-6 lg:px-16">
+          <Cards />
         </div>
       </section>
       <section

@@ -9,22 +9,18 @@ const badgeColors = [
   "bg-green-400/25",
 ];
 
-export default function Cards({ x, innerRef }) {
+export default function Cards() {
   return (
-    <motion.div
-      ref={innerRef}
-      style={{ x }}
-      className="flex w-full flex-col items-stretch gap-5 md:w-max md:flex-row md:gap-3 md:p-3"
-    >
+    <motion.div className="grid w-full grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-3">
       {featuredProjects.map((project) => (
         <article
           key={project.slug}
-          className="flex w-full min-w-0 flex-col overflow-hidden rounded-2xl border border-sky-400/20 bg-white/[0.03] backdrop-blur-md transition-colors duration-300 hover:border-sky-300/40 md:w-auto md:min-w-[360px]"
+          className="flex min-w-0 flex-col overflow-hidden rounded-2xl border border-sky-400/20 bg-white/[0.03] backdrop-blur-md transition-colors duration-300 hover:border-sky-300/40"
         >
           <div className="p-3">
             <img
               src={project.thumbnail}
-              className="h-44 w-full rounded-xl object-cover"
+              className="aspect-video w-full rounded-xl object-cover"
               alt={`${project.name} preview`}
             />
           </div>
@@ -38,7 +34,7 @@ export default function Cards({ x, innerRef }) {
               {project.name}
             </h3>
 
-            <p className="mt-3 min-h-16 text-sm font-light leading-6 text-slate-200">
+            <p className="mt-3 text-sm font-light leading-6 text-slate-200">
               {project.description}
             </p>
 
