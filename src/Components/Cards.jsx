@@ -9,10 +9,14 @@ const badgeColors = [
   "bg-green-400/25",
 ];
 
-export default function Cards() {
+export default function Cards({ limit }) {
+  const projects = typeof limit === "number"
+    ? featuredProjects.slice(0, limit)
+    : featuredProjects;
+
   return (
     <motion.div className="grid w-full grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-3">
-      {featuredProjects.map((project) => (
+      {projects.map((project) => (
         <article
           key={project.slug}
           className="flex min-w-0 flex-col overflow-hidden rounded-2xl border border-sky-400/20 bg-white/[0.03] backdrop-blur-md transition-colors duration-300 hover:border-sky-300/40"

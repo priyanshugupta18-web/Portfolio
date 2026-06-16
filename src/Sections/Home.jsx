@@ -1,7 +1,6 @@
 import { NavLink } from "react-router-dom";
 import Hero from "../assets/Hero.png";
 import {
-  easeOut,
   motion,
   useReducedMotion,
   useScroll,
@@ -30,12 +29,8 @@ export default function Home() {
   const isMobile = viewportMode === "mobile";
   const isTablet = viewportMode === "tablet";
   const shouldReduceMotion = useReducedMotion();
-  const entryDistance = shouldReduceMotion ? 0 : isMobile ? -24 : isTablet ? -64 : -120;
-  const revealDuration = shouldReduceMotion ? 0 : isMobile ? 0.6 : isTablet ? 0.85 : 1.2;
   const heroRef = useRef(null);
-  const aboutRef = useRef(null);
 
-  const expRef = useRef(null);
   const [expParticles] = useState(() =>
     Array.from({ length: 14 }, (_, i) => ({
       id: i,
@@ -46,17 +41,6 @@ export default function Home() {
       color: Math.random() > 0.6 ? "#a5b4fc" : "#7dd3fc",
     })),
   );
-
-  const { scrollYProgress: expScroll } = useScroll({
-    target: expRef,
-    offset: ["start 85%", "center 65%"],
-  });
-  const expHeadingX = useTransform(
-    expScroll,
-    [0, 1],
-    [entryDistance, 0],
-  );
-  const expOpacity = useTransform(expScroll, [0, 0.4], [0, 1]);
 
   useEffect(() => {
     const updateViewportMode = () => setViewportMode(getViewportMode());
@@ -82,18 +66,6 @@ export default function Home() {
   );
   const heroOpacity = useTransform(heroScroll, [0, 0.8], [1, 0]);
 
-  const { scrollYProgress: aboutScroll } = useScroll({
-    target: aboutRef,
-    offset: ["start 85%", "center 65%"],
-  });
-
-  const leftX = useTransform(
-    aboutScroll,
-    [0, 1],
-    [shouldReduceMotion ? 0 : isMobile ? -20 : isTablet ? -70 : -140, 0],
-  );
-  const aboutOpacity = useTransform(aboutScroll, [0, 0.4], [0, 1]);
-
   return (
     <>
       <section
@@ -104,155 +76,35 @@ export default function Home() {
           className="w-full max-w-3xl md:max-w-none"
           style={{ y: heroTextY, opacity: heroOpacity }}
         >
-          <motion.div className="w-full">
-            <motion.div
-              initial={{
-                x: -30,
-                opacity: 0,
-              }}
-              animate={{
-                x: 0,
-                opacity: 1,
-              }}
-              transition={{
-                duration: 0.8,
-                ease: easeOut,
-                delay: 0.1,
-              }}
-              className="text-xs font-normal uppercase tracking-widest text-gradient sm:text-sm"
-            >
+          <div className="w-full">
+            <div className="text-xs font-normal uppercase tracking-widest text-gradient sm:text-sm">
               Welcome to my World
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{
-                x: -30,
-                opacity: 0,
-              }}
-              animate={{
-                x: 0,
-                opacity: 1,
-              }}
-              transition={{
-                duration: 0.8,
-                ease: easeOut,
-                delay: 0.25,
-              }}
-              className="mt-8 text-4xl font-semibold tracking-wider text-white sm:mt-10 sm:text-5xl"
-            >
+            <div className="mt-8 text-4xl font-semibold tracking-wider text-white sm:mt-10 sm:text-5xl">
               Hi I'm
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{
-                x: -30,
-                opacity: 0,
-              }}
-              animate={{
-                x: 0,
-                opacity: 1,
-              }}
-              transition={{
-                duration: 0.8,
-                ease: easeOut,
-                delay: 0.4,
-              }}
-              className="mt-3 max-w-full break-words text-4xl font-semibold tracking-normal text-gradient sm:text-5xl lg:text-6xl"
-            >
+            <div className="mt-3 max-w-full break-words text-4xl font-semibold tracking-normal text-gradient sm:text-5xl lg:text-6xl">
               Priyanshu Gupta
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{
-                x: -30,
-                opacity: 0,
-              }}
-              animate={{
-                x: 0,
-                opacity: 1,
-              }}
-              transition={{
-                duration: 0.8,
-                ease: easeOut,
-                delay: 0.55,
-              }}
-              className="mt-4 text-lg font-medium leading-8 tracking-wide text-white sm:text-xl sm:tracking-wider lg:text-2xl lg:tracking-widest"
-            >
+            <div className="mt-4 text-lg font-medium leading-8 tracking-wide text-white sm:text-xl sm:tracking-wider lg:text-2xl lg:tracking-widest">
               Front-end Developer | Building Scalable
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{
-                x: -30,
-                opacity: 0,
-              }}
-              animate={{
-                x: 0,
-                opacity: 1,
-              }}
-              transition={{
-                duration: 0.8,
-                ease: easeOut,
-                delay: 0.55,
-              }}
-              className="text-lg font-medium leading-8 tracking-wide text-white sm:text-xl sm:tracking-wider lg:text-2xl lg:tracking-widest"
-            >
+            <div className="text-lg font-medium leading-8 tracking-wide text-white sm:text-xl sm:tracking-wider lg:text-2xl lg:tracking-widest">
               Web Experiences
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{
-                x: -30,
-                opacity: 0,
-              }}
-              animate={{
-                x: 0,
-                opacity: 1,
-              }}
-              transition={{
-                duration: 0.8,
-                ease: easeOut,
-                delay: 0.6,
-              }}
-              className="h-0.5 w-12 mt-8 grad"
-            ></motion.div>
+            <div className="h-0.5 w-12 mt-8 grad" />
 
-            <motion.div
-              initial={{
-                x: -30,
-                opacity: 0,
-              }}
-              animate={{
-                x: 0,
-                opacity: 1,
-              }}
-              transition={{
-                duration: 0.8,
-                ease: easeOut,
-                delay: 0.7,
-              }}
-              className="mt-8 max-w-xl text-sm font-normal leading-7 tracking-wide text-white sm:tracking-widest"
-            >
+            <div className="mt-8 max-w-xl text-sm font-normal leading-7 tracking-wide text-white sm:tracking-widest">
               I Craft modern web experiences while continuously exploring the
               art of software engineering.
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{
-                x: -30,
-                opacity: 0,
-              }}
-              animate={{
-                x: 0,
-                opacity: 1,
-              }}
-              transition={{
-                duration: 0.8,
-                ease: easeOut,
-                delay: 0.85,
-              }}
-              className="mt-8 flex flex-wrap items-center gap-4 sm:gap-5"
-            >
+            <div className="mt-8 flex flex-wrap items-center gap-4 sm:gap-5">
               <NavLink
                 to="/projects"
                 className="md:px-6 md:py-3 px-3 py-2 rounded-full bg-sky-400 text-slate-950 font-medium tracking-wide shadow-[0_0_25px_rgba(56,189,248,0.35)] hover:bg-sky-300 hover:shadow-[0_0_35px_rgba(56,189,248,0.55)] transition-all duration-300"
@@ -266,8 +118,8 @@ export default function Home() {
               >
                 Resume
               </a>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </motion.div>
 
         <motion.div
@@ -303,17 +155,10 @@ export default function Home() {
           </div>
 
           <motion.img
-            initial={{ x: 60, opacity: 0, scale: 0.92 }}
             animate={{
-              x: 0,
-              opacity: 1,
-              scale: 1,
               y: [0, -16, 0],
             }}
             transition={{
-              x: { duration: 0.8, ease: "easeOut" },
-              opacity: { duration: 0.8 },
-              scale: { duration: 0.8, ease: "easeOut" },
               y: { ease: "easeInOut", duration: 3, repeat: Infinity },
             }}
             className="relative z-10 h-[430px] w-full max-w-[360px] object-contain drop-shadow-[0_26px_35px_rgba(56,189,248,0.16)] [mask-image:linear-gradient(to_bottom,black_0%,black_58%,rgba(0,0,0,0.9)_66%,rgba(0,0,0,0.35)_76%,transparent_88%)] [-webkit-mask-image:linear-gradient(to_bottom,black_0%,black_58%,rgba(0,0,0,0.9)_66%,rgba(0,0,0,0.35)_76%,transparent_88%)] lg:h-[500px] lg:max-w-[430px] xl:h-[560px] xl:max-w-[500px]"
@@ -323,14 +168,8 @@ export default function Home() {
         </motion.div>
       </section>
 
-      <section
-        ref={aboutRef}
-        className="about-bg flex min-h-screen flex-col items-center justify-around overflow-hidden px-5 py-20 text-white sm:px-6 sm:py-24 lg:flex-row lg:px-16"
-      >
-        <motion.div
-          style={{ x: leftX, opacity: aboutOpacity }}
-          className="w-full max-w-[700px]"
-        >
+      <section className="about-bg flex min-h-screen flex-col items-center justify-around overflow-hidden px-5 py-20 text-white sm:px-6 sm:py-24 lg:flex-row lg:px-16">
+        <div className="w-full max-w-[700px]">
           <h2 className="text-4xl font-light text-gradient sm:text-5xl md:text-6xl lg:text-7xl">
             Who am I?
           </h2>
@@ -373,39 +212,18 @@ export default function Home() {
               <FiArrowRight className="text-white" size={20} />
             </NavLink>
           </div>
-        </motion.div>
+        </div>
 
         <div className="mt-10 w-full min-w-0 lg:mt-0 lg:w-auto">
-          <AboutMeSnippet isMobile={isMobile} />
+          <AboutMeSnippet />
         </div>
       </section>
       <section className="my-20 border-y border-white/10 bg-white/[0.03] shadow-xl backdrop-blur-md py-24 overflow-hidden">
-        <motion.div
-          initial={{ x: entryDistance, opacity: 0 }}
-          whileInView={{ x: 0, opacity: 1 }}
-          viewport={{ amount: 0.3, once: true }}
-          transition={{
-            duration: revealDuration,
-            ease: easeOut,
-            delay: shouldReduceMotion ? 0 : 0.15,
-          }}
-          className="px-5 text-center text-4xl font-light tracking-normal text-gradient sm:text-5xl md:text-6xl lg:text-7xl"
-        >
+        <div className="px-5 text-center text-4xl font-light tracking-normal text-gradient sm:text-5xl md:text-6xl lg:text-7xl">
           What Stack do I use?
-        </motion.div>
+        </div>
 
-        <motion.div
-          initial={{ scaleX: 0, opacity: 0 }}
-          whileInView={{ scaleX: 1, opacity: 1 }}
-          style={{ originX: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{
-            duration: revealDuration,
-            ease: easeOut,
-            delay: shouldReduceMotion ? 0 : 0.2,
-          }}
-          className="mt-6 h-[1.5px] w-32 bg-sky-300 mx-auto"
-        />
+        <div className="mt-6 h-[1.5px] w-32 bg-sky-300 mx-auto" />
 
         <div className="mt-20">
           <InfiniteMarquee />
@@ -413,59 +231,36 @@ export default function Home() {
       </section>
       <section className="relative overflow-hidden about-bg">
         <div className="px-6 pt-24 pb-10 lg:px-16">
-          <motion.div
-            initial={{ x: entryDistance, opacity: 0 }}
-            whileInView={{ x: 0, opacity: 1 }}
-            viewport={{ amount: 0.3, once: true }}
-            transition={{
-              duration: revealDuration,
-              ease: easeOut,
-              delay: shouldReduceMotion ? 0 : 0.15,
-            }}
-            className="text-center text-4xl font-light text-gradient sm:text-5xl md:text-6xl lg:text-7xl"
-          >
+          <div className="text-center text-4xl font-light text-gradient sm:text-5xl md:text-6xl lg:text-7xl">
             Featured Projects
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ scaleX: 0, opacity: 0 }}
-            whileInView={{ scaleX: 1, opacity: 1 }}
-            style={{ originX: 0.5 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{
-              duration: revealDuration,
-              ease: easeOut,
-              delay: shouldReduceMotion ? 0 : 0.2,
-            }}
-            className="mx-auto mt-6 h-[1.5px] w-32 bg-sky-300"
-          />
+          <div className="mx-auto mt-6 h-[1.5px] w-32 bg-sky-300" />
 
-          <motion.p
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{
-              duration: shouldReduceMotion ? 0 : isMobile ? 0.6 : isTablet ? 0.75 : 0.9,
-              ease: easeOut,
-              delay: shouldReduceMotion ? 0 : 0.3,
-            }}
+          <p
             className="mx-auto mt-8 max-w-2xl text-center text-base leading-8 text-slate-300 md:text-lg"
           >
             Explore my{" "}
-            <span className="font-medium text-sky-300">top 10 projects</span> —
+            <span className="font-medium text-sky-300">top 5 projects</span> —
             a curated collection of apps, games, and experiments spanning
             full-stack platforms, UI clones, and machine learning tools.
-          </motion.p>
+          </p>
         </div>
 
         <div className="mx-auto max-w-7xl px-4 pb-20 sm:px-6 lg:px-16">
-          <Cards />
+          <Cards limit={5} />
+          <div className="mt-10 flex justify-center">
+            <NavLink
+              to="/projects"
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-sky-300/30 bg-white/[0.04] px-6 py-3 font-medium tracking-wide text-sky-300 transition-colors hover:border-sky-300/60 hover:bg-sky-400/10"
+            >
+              View All Projects
+              <FiArrowRight size={18} />
+            </NavLink>
+          </div>
         </div>
       </section>
-      <section
-        ref={expRef}
-        className="w-full bg-white/[0.03] my-20 border-y border-white/10 py-16 backdrop-blur-md shadow-xl relative overflow-hidden"
-      >
+      <section className="w-full bg-white/[0.03] my-20 border-y border-white/10 py-16 backdrop-blur-md shadow-xl relative overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
           {expParticles
             .slice(0, isMobile ? 7 : expParticles.length)
@@ -497,70 +292,28 @@ export default function Home() {
           className="pointer-events-none absolute left-1/2 top-1/2 h-[200px] w-[320px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-sky-400/10 blur-3xl sm:w-[600px]"
         />
 
-        <motion.div
-          style={{ x: expHeadingX, opacity: expOpacity }}
-          className="px-5 py-3 text-center text-4xl font-light tracking-normal text-gradient md:text-6xl lg:text-7xl"
-        >
+        <div className="px-5 py-3 text-center text-4xl font-light tracking-normal text-gradient md:text-6xl lg:text-7xl">
           Experiments &amp; Blogs
-        </motion.div>
+        </div>
 
-        <motion.div
-          initial={{ scaleX: 0, opacity: 0 }}
-          whileInView={{ scaleX: 1, opacity: 1 }}
-          style={{ originX: 0.5 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{
-            duration: revealDuration,
-            ease: easeOut,
-            delay: shouldReduceMotion ? 0 : 0.2,
-          }}
-          className="bg-sky-300 h-[1.5px] w-20 md:w-32 mx-auto"
-        />
+        <div className="bg-sky-300 h-[1.5px] w-20 md:w-32 mx-auto" />
 
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{
-            duration: shouldReduceMotion ? 0 : isMobile ? 0.6 : isTablet ? 0.75 : 0.9,
-            ease: easeOut,
-            delay: shouldReduceMotion ? 0 : 0.3,
-          }}
-          className="mx-5 py-12 text-center text-lg font-light leading-8 tracking-wide text-white sm:mx-10 sm:text-xl md:mx-30 md:py-16 md:text-2xl lg:mx-50"
-        >
+        <div className="mx-5 py-12 text-center text-lg font-light leading-8 tracking-wide text-white sm:mx-10 sm:text-xl md:mx-30 md:py-16 md:text-2xl lg:mx-50">
           <span className="mr-2 text-2xl text-sky-300">❝</span>I love doing
           experiments, I always try to build new things and see the results and
           I also love documenting those results and my experiences through
           blogs. Checkout my works and write-ups.
           <span className="ml-2 text-2xl text-sky-300">❞</span>
-        </motion.div>
+        </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{
-            duration: shouldReduceMotion ? 0 : isMobile ? 0.6 : 0.8,
-            ease: easeOut,
-            delay: shouldReduceMotion ? 0 : 0.35,
-          }}
-          className="mb-14 flex flex-wrap justify-center gap-x-10 gap-y-8 px-5 md:mb-16 md:gap-24"
-        >
+        <div className="mb-14 flex flex-wrap justify-center gap-x-10 gap-y-8 px-5 md:mb-16 md:gap-24">
           {[
             { value: "10+", label: "Experiments" },
             { value: "5+", label: "Blog Posts" },
             { value: "∞", label: "Curiosity" },
-          ].map((stat, i) => (
-            <motion.div
+          ].map((stat) => (
+            <div
               key={stat.label}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{
-                duration: 0.6,
-                ease: easeOut,
-                delay: shouldReduceMotion ? 0 : 0.4 + i * 0.1,
-              }}
               className="flex flex-col items-center gap-1"
             >
               <span className="text-3xl md:text-4xl font-light text-gradient">
@@ -569,21 +322,11 @@ export default function Home() {
               <span className="text-sm tracking-widest text-slate-400 uppercase">
                 {stat.label}
               </span>
-            </motion.div>
+            </div>
           ))}
-        </motion.div>
+        </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{
-            duration: shouldReduceMotion ? 0 : isMobile ? 0.6 : 0.8,
-            ease: easeOut,
-            delay: shouldReduceMotion ? 0 : 0.5,
-          }}
-          className="flex flex-wrap items-center justify-center gap-4 px-5 md:gap-8"
-        >
+        <div className="flex flex-wrap items-center justify-center gap-4 px-5 md:gap-8">
           <motion.div whileHover={{ y: -3 }} whileTap={{ scale: 0.97 }}>
             <NavLink
               to="/Lab"
@@ -619,17 +362,12 @@ export default function Home() {
               </motion.span>
             </div>
           </motion.div>
-        </motion.div>
+        </div>
       </section>
 
       <section className="relative overflow-hidden border-y border-white/10 bg-slate-950/45 px-5 py-20 sm:px-10 md:py-24 lg:px-16">
         <div className="relative mx-auto grid max-w-6xl gap-12 md:grid-cols-[minmax(0,1fr)_auto] md:items-end">
-          <motion.div
-            initial={{ opacity: 0, x: entryDistance }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: revealDuration, ease: easeOut }}
-          >
+          <div>
             <span className="text-xs font-medium uppercase tracking-[0.25em] text-sky-300 sm:text-sm">
               Open to collaboration
             </span>
@@ -642,19 +380,9 @@ export default function Home() {
               exchanging perspectives, and collaborating on work that creates
               real value.
             </p>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{
-              duration: shouldReduceMotion ? 0 : 0.8,
-              ease: easeOut,
-              delay: shouldReduceMotion ? 0 : 0.2,
-            }}
-            className="flex flex-wrap gap-3 md:max-w-56 md:justify-end"
-          >
+          <div className="flex flex-wrap gap-3 md:max-w-56 md:justify-end">
             <motion.a
               whileHover={{ y: -3 }}
               whileTap={{ scale: 0.97 }}
@@ -686,7 +414,7 @@ export default function Home() {
                 <FiMail size={18} />
               </NavLink>
             </motion.div>
-          </motion.div>
+          </div>
         </div>
       </section>
     </>
