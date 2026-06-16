@@ -3,7 +3,7 @@ import TechRow from "./TechRow";
 
 export default function InfiniteMarquee() {
   return (
-    <div className="overflow-hidden">
+    <div className="w-full max-w-full overflow-hidden">
       <motion.div
         className="flex w-max"
         animate={{

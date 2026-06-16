@@ -19,7 +19,7 @@ export default function Cards({ x, innerRef }) {
       {featuredProjects.map((project) => (
         <article
           key={project.slug}
-          className="flex w-full min-w-0 flex-col overflow-hidden rounded-2xl border border-sky-400/30 bg-white/[0.03] backdrop-blur-md md:w-auto md:min-w-[360px]"
+          className="flex w-full min-w-0 flex-col overflow-hidden rounded-2xl border border-sky-400/20 bg-white/[0.03] backdrop-blur-md transition-colors duration-300 hover:border-sky-300/40 md:w-auto md:min-w-[360px]"
         >
           <div className="p-3">
             <img
@@ -55,7 +55,7 @@ export default function Cards({ x, innerRef }) {
 
             <NavLink
               to={`/projects/${project.slug}`}
-              className="mt-4 inline-flex items-center justify-center gap-2 rounded-2xl bg-sky-400 px-3 py-3 text-sm font-medium tracking-wide text-slate-950 shadow-[0_0_25px_rgba(56,189,248,0.35)] transition-all duration-300 hover:bg-sky-300 hover:shadow-[0_0_35px_rgba(56,189,248,0.55)]"
+              className="mt-auto inline-flex items-center justify-center gap-2 rounded-2xl bg-sky-400 px-3 py-3 text-sm font-medium tracking-wide text-slate-950 shadow-[0_0_25px_rgba(56,189,248,0.25)] transition-all duration-300 hover:bg-sky-300 hover:shadow-[0_0_35px_rgba(56,189,248,0.4)]"
             >
               View Project
               <FiArrowRight size={14} />

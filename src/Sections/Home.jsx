@@ -81,14 +81,18 @@ export default function Home() {
     if (!cardsEl) return;
 
     const updateScrollDistance = () => {
+      if (window.innerWidth < 768) {
+        setScrollDistance(0);
+        setCardSectionHeight("auto");
+        return;
+      }
+
       const totalWidth = cardsEl.scrollWidth;
       const distance = Math.max(0, totalWidth - window.innerWidth + 48);
 
       setScrollDistance(distance);
       setCardSectionHeight(
-        window.innerWidth < 768
-          ? "auto"
-          : `${Math.max(window.innerHeight * 2.25, distance + window.innerHeight + 360)}px`,
+        `${Math.max(window.innerHeight * 2.25, distance + window.innerHeight + 360)}px`,
       );
     };
 
@@ -452,7 +456,7 @@ export default function Home() {
       </section>
       <section
         ref={cardRef}
-        className="relative about-bg"
+        className="relative overflow-hidden about-bg"
         style={{ height: cardSectionHeight }}
       >
         <div className="px-6 pt-24 pb-10 lg:px-16">
@@ -666,12 +670,6 @@ export default function Home() {
       </section>
 
       <section className="relative overflow-hidden border-y border-white/10 bg-slate-950/45 px-5 py-20 sm:px-10 md:py-24 lg:px-16">
-        <motion.div
-          animate={{ scale: [1, 1.12, 1], opacity: [0.1, 0.2, 0.1] }}
-          transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-          className="pointer-events-none absolute -right-20 top-1/2 h-64 w-64 -translate-y-1/2 rounded-full bg-sky-400/20 blur-3xl md:h-96 md:w-96"
-        />
-
         <div className="relative mx-auto grid max-w-6xl gap-12 md:grid-cols-[minmax(0,1fr)_auto] md:items-end">
           <motion.div
             initial={{ opacity: 0, x: entryDistance }}
