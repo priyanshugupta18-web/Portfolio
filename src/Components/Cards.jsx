@@ -53,13 +53,15 @@ export default function Cards({ limit }) {
               ))}
             </div>
 
-            <NavLink
-              to={`/projects/${project.slug}`}
-              className="mt-auto inline-flex items-center justify-center gap-2 rounded-2xl bg-sky-400 px-3 py-3 text-sm font-medium tracking-wide text-slate-950 shadow-[0_0_25px_rgba(56,189,248,0.25)] transition-all duration-300 hover:bg-sky-300 hover:shadow-[0_0_35px_rgba(56,189,248,0.4)]"
-            >
-              View Project
-              <FiArrowRight size={14} />
-            </NavLink>
+            <div className="mt-auto pt-5">
+              <NavLink
+                to={`/projects/${project.slug}`}
+                className="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-sky-400 px-3 py-3 text-sm font-medium tracking-wide text-slate-950 shadow-[0_0_25px_rgba(56,189,248,0.25)] transition-all duration-300 hover:bg-sky-300 hover:shadow-[0_0_35px_rgba(56,189,248,0.4)]"
+              >
+                View Project
+                <FiArrowRight size={14} />
+              </NavLink>
+            </div>
           </div>
         </article>
       ))}
