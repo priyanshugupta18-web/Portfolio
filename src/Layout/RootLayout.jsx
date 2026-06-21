@@ -1,26 +1,15 @@
-import { Outlet } from "react-router-dom";
-import Navbar from "../Components/Navbar";
-import Footer from "../Sections/Footer";
-import ParticlesBackground from "../Components/ParticlesBackground";
-import "../index.css";
-import Home from "../Sections/Home";
-import About from "../Sections/About";
-import Projects from "../Sections/Projects";
-import Contact from "../Sections/Contact";
-import Lab from "../Sections/Lab";
-import Stack from "../Sections/Stack";
+import React from 'react'
+import { Outlet } from 'react-router-dom'
+import { Navbar, Footer } from '../components'
+import Home from '../pages/home'
 
-export default function RootLayout() {
+function routeLayout() {
   return (
-    <div className="min-h-dvh text-white">
-      <ParticlesBackground />
-      <div className="relative z-10">
-        <Navbar />
-        <main>
-          <Outlet />
-        </main>
-        <Footer />
-      </div>
+    <div>
+      <Outlet />
+      <Footer />
     </div>
-  );
+  )
 }
+
+export default routeLayout
