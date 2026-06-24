@@ -1,8 +1,40 @@
 @import "tailwindcss";
 @plugin "tailwind-scrollbar-hide";
 
-@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+html {
+  scroll-behavior: smooth;
+}
 
-body{
-    @apply bg-white dark:bg-slate-800
+body {
+  @apply bg-bg text-main;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-box: var(--box);
+  --color-field: var(--field);
+  --color-accent: var(--accent);
+  --color-main: var(--main);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+}
+
+:root {
+  --bg: #f8fafa;
+  --box: #ffffff;
+  --field: #e4ecf7;
+  --accent: #0284c7;
+  --main: #1e293b;
+  --muted: #475569;
+  --line: rgba(2, 132, 199, 0.13);
+}
+
+:root[data-theme="dark"] {
+  --bg: #0d1b2e;
+  --box: #112240;
+  --field: #172a45;
+  --accent: #3bbdff;
+  --main: #ccd6f6;
+  --muted: #8892b0;
+  --line: rgba(56, 189, 248, 0.1);
 }

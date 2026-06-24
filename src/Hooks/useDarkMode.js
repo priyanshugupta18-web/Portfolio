@@ -8,11 +8,13 @@ export default function useDarkMode() {
       return window.matchMedia("(prefers-color-scheme: dark)").matches;
   });
   useEffect(() => {
+    const root = document.documentElement;
+
     if (darkMode) {
-      document.querySelector("html").setAttribute("data-theme", "dark");
+      root.setAttribute("data-theme", "dark");
       localStorage.setItem("darkMode", "true");
     } else {
-      document.querySelector("html").removeAttribute("data-theme");
+      root.removeAttribute("data-theme");
       localStorage.setItem("darkMode", "false");
     }
   }, [darkMode]);
