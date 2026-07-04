@@ -189,6 +189,9 @@ button { color:inherit; }
   .tag-one { left:-2%; }
   .tag-two { right:1%; }
 }
+@media (max-width:1239px) {
+  .portrait-halo { display:none; }
+}
 @media (max-width:900px) {
   .hero { grid-template-columns:1fr; min-height:auto; padding:120px 0 100px; }
   .hero-copy { max-width:720px; }
@@ -218,7 +221,6 @@ button { color:inherit; }
   .hero-actions { align-items:stretch; flex-direction:column; gap:10px; margin-top:28px; }
   .hero-actions a { justify-content:center; }
   .portrait-stage { width:min(calc(100% - 40px),340px); margin-top:58px; }
-  .portrait-halo { display:none; }
   .portrait-frame { border-width:6px; }
   .portrait-tag { min-width:0; max-width:148px; gap:7px; padding:9px 10px; }
   .portrait-tag span { font-size:8px; }
