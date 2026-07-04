@@ -1,22 +1,12 @@
-function Footer() {
-  return (
-    <footer className="border-t border-line bg-box">
-      <div className="mx-auto flex max-w-5xl flex-col gap-3 px-6 py-6 font-mono text-xs text-muted sm:flex-row sm:items-center sm:justify-between">
-        <p>Designed and built by Priyanshu Gupta.</p>
-        <div className="flex gap-4">
-          <a className="transition-colors hover:text-accent" href="mailto:priyanshuguptawebdev@gmail.com">
-            Email
-          </a>
-          <a className="transition-colors hover:text-accent" href="https://github.com/techy-p/">
-            GitHub
-          </a>
-          <a className="transition-colors hover:text-accent" href="https://linkedin.com/priyanshugupta18/">
-            LinkedIn
-          </a>
-        </div>
-      </div>
-    </footer>
-  )
-}
+import { FaGithub, FaLinkedinIn, FaReact } from "react-icons/fa";
+import { SiFramer, SiTailwindcss } from "react-icons/si";
 
-export default Footer
+export default function Footer() {
+  return (
+    <footer className="footer"><div className="footer-inner shell">
+      <span>© {new Date().getFullYear()} Priyanshu Gupta / Frontend Developer</span>
+      <div className="footer-tech"><span>Built with</span><span><FaReact /> React</span><span><SiTailwindcss /> Tailwind</span><span><SiFramer /> Motion</span></div>
+      <div className="footer-links"><a className="social-link" href="https://github.com/priyanshugupta18-web" target="_blank" rel="noreferrer" aria-label="GitHub"><FaGithub size={17} /></a><a className="social-link" href="https://www.linkedin.com/in/priyanshugupta18/" target="_blank" rel="noreferrer" aria-label="LinkedIn"><FaLinkedinIn size={17} /></a></div>
+    </div></footer>
+  );
+}
