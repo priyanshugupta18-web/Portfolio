@@ -30,7 +30,7 @@ export default function Home() {
         <motion.div className="tech-grid" {...reveal}>{technologies.map(([Icon,name,role])=><motion.div className="tech-card" key={name} whileHover={{ y:-5 }}><Icon /><div><h3>{name}</h3><p>{role}</p></div></motion.div>)}</motion.div>
       </div></section>
 
-      <section className="contact-section" id="contact"><div className="shell"><SectionHeading title="Contact" description="Looking for a Frontend Developer or have an interesting project? Send me a message." /><motion.div className="contact-layout" {...reveal}><div className="contact-copy"><h2>Let's build something meaningful.</h2><p>I am interested in frontend opportunities that challenge me to learn, contribute, and grow as a software engineer.</p><a href="mailto:priyanshuguptawebdev@gmail.com">priyanshuguptawebdev@gmail.com <ArrowUpRight size={15} /></a></div><ContactForm /></motion.div></div></section>
+      <section className="contact-section" id="contact"><div className="shell"><SectionHeading title="Contact" description="Looking for a Web Developer or have an interesting project? Send me a message." /><motion.div className="contact-layout" {...reveal}><div className="contact-copy"><h2>Let's build something meaningful.</h2><p>I am interested in frontend opportunities that challenge me to learn, contribute, and grow as a software engineer.</p><a href="mailto:priyanshuguptawebdev@gmail.com">priyanshuguptawebdev@gmail.com <ArrowUpRight size={15} /></a></div><ContactForm /></motion.div></div></section>
     </main></>
   );
 }

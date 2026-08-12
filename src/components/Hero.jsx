@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowDownRight, ArrowUpRight, Braces, Layers3 } from "lucide-react";
-import profileImage from "../assets/1781074909012.jpg";
+import profileImage from "../assets/profile2.jpeg";
 
 const reveal = { hidden: { opacity: 0, y: 18, filter: "blur(3px)" }, visible: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: .72, ease: [0.22, 1, .36, 1] } } };
 
