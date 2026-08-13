@@ -1,6 +1,4 @@
-export {default as Navbar } from "./Navbar"
-export {default as Footer } from "./Footer"
-export {default as Hero } from "./Hero"
-export {default as MiniGame } from "./MiniGame"
-export {default as ContactForm } from "./ContactForm"
-export {default as PageLoader } from "./PageLoader"
+export { default as Footer } from './common/Footer'
+export { default as Navbar } from './common/Navbar'
+export { default as PageLoader } from './common/PageLoader'
+

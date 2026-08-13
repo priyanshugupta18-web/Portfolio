@@ -23,5 +23,8 @@ dist-ssr
 *.sln
 *.sw?
 
-# Local documentation
-HOME_PAGE_CHANGES.md
+.env
+.env.local
+.env.*.local
+*.env
+

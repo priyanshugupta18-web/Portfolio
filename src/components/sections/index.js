@@ -1,0 +1,7 @@
+export { default as AboutSection } from './AboutSection'
+export { default as ContactForm } from './ContactForm'
+export { default as ContactSection } from './ContactSection'
+export { default as Hero } from './Hero'
+export { default as ProjectsSection } from './ProjectsSection'
+export { default as SectionHeading } from './SectionHeading'
+export { default as StackSection } from './StackSection'
