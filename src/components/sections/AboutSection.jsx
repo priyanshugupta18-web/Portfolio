@@ -10,10 +10,9 @@ export default function AboutSection() {
         <SectionHeading title="About me" />
         <motion.div className="about-grid" {...revealOnScroll}>
           <div className="about-copy">
-            <p>I am a Student and Computer Science undergraduate who learns best by building real products.</p>
+            <p>I am a Student and Computer Science undergraduate who learns best by building.</p>
             <span>
-              I enjoy transforming ideas into scalable, user-focused applications while continuously improving my software
-              engineering skills. Beyond writing code, I am interested in application architecture, performance optimization,
+              I write code built to survive in production and constantly strive to improve its quality. Beyond writing code, I am passionate about application architecture, performance optimization,
               and understanding how software works beneath the surface.
             </span>
           </div>

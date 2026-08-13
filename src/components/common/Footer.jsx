@@ -6,7 +6,7 @@ export default function Footer() {
   return (
     <footer className="footer">
       <div className="footer-inner shell">
-        <span>Copyright {new Date().getFullYear()} {profile.name} / {profile.role}</span>
+        <span>Copyright {new Date().getFullYear()} {profile.name}</span>
         <div className="footer-tech">
           <span>Built with</span>
           <span>

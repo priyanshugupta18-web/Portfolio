@@ -57,7 +57,7 @@ export default function ProjectsSection() {
       <div className="shell">
         <SectionHeading
           title="Projects"
-          description="Real-world applications where I apply modern engineering practices."
+          description="A curated showcase of the best projects I have built so far."
         />
         {featuredProjects.map((project) => (
           <FeaturedProjectCard key={project.title} project={project} />
@@ -66,3 +66,4 @@ export default function ProjectsSection() {
     </section>
   )
 }
+

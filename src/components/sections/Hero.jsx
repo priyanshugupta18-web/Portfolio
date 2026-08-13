@@ -25,7 +25,7 @@ export default function Hero() {
         <motion.p className="mobile-hero-intro" variants={heroReveal}>
           <span>Hi, I am Priyanshu Gupta,</span>
           <span>
-            a <strong>CSE undergrad</strong> and an aspiring software developer.
+            a <strong>CSE undergrad</strong> and an aspiring <strong>software developer</strong>.
           </span>
         </motion.p>
         <motion.div className="hero-actions" variants={heroReveal}>
@@ -43,3 +43,4 @@ export default function Hero() {
     </section>
   )
 }
+
