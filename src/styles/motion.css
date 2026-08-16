@@ -1,0 +1,121 @@
+/* ==========================================================================
+   Motion & Visual FX Styles
+   ========================================================================== */
+
+/* Film grain overlay */
+.grain-overlay {
+  pointer-events: none;
+  position: fixed;
+  z-index: 9998;
+  inset: 0;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Scroll progress indicator */
+.scroll-progress {
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  transform-origin: 0 50%;
+  background: linear-gradient(90deg, #f2b51c, #ffe08a, #f2b51c);
+  box-shadow: 0 0 16px rgba(242, 181, 28, 0.55);
+}
+
+/* 3D Project Card */
+.project-card-3d {
+  position: relative;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.project-card-glow {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  background: radial-gradient(circle at 50% 0%, rgba(242, 181, 28, 0.12), transparent 55%);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.project-card-3d:hover .project-card-glow {
+  opacity: 1;
+}
+
+.project-card-3d .project-image,
+.project-card-3d .project-copy {
+  position: relative;
+  z-index: 1;
+}
+
+/* About Fact Hover Line */
+.about-fact-row {
+  position: relative;
+  overflow: hidden;
+}
+
+.about-fact-row::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  transform: scaleX(0);
+  transform-origin: left;
+  background: linear-gradient(90deg, var(--accent), transparent);
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.about-fact-row:hover::before {
+  transform: scaleX(1);
+}
+
+/* Ambient Section Backdrops */
+.work-section,
+.about-section,
+.stack-section {
+  position: relative;
+}
+
+.work-section::before,
+.stack-section::before {
+  content: '';
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.08;
+  pointer-events: none;
+}
+
+.work-section::before {
+  right: -100px;
+  top: 60px;
+  background: var(--accent);
+}
+
+.stack-section::before {
+  left: -120px;
+  bottom: 40px;
+  background: var(--accent-secondary);
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .grain-overlay,
+  .scroll-progress,
+  .hero-scroll-cue {
+    animation: none !important;
+  }
+
+  .project-card-3d {
+    transform: none !important;
+  }
+}

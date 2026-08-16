@@ -10,8 +10,11 @@ import {
   SiMongodb,
   SiNodedotjs,
   SiRedux,
+  SiReact,
   SiTailwindcss,
 } from 'react-icons/si'
+import { FaSquareXTwitter } from "react-icons/fa6";
+import { FaYoutube, FaReddit } from "react-icons/fa";
 import writeItCover from '../assets/writeit-editorial.jpg'
 
 export const profile = {
@@ -29,6 +32,9 @@ export const profile = {
   socialLinks: [
     { label: 'GitHub', href: 'https://github.com/techyyp', icon: FaGithub },
     { label: 'LinkedIn', href: 'https://www.linkedin.com/in/techyyp/', icon: FaLinkedinIn },
+    { label: 'X', href: 'https://x.com/techyyp/', icon: FaSquareXTwitter },
+    { label: 'YouTube', href: 'https://youtube.com/@techyyp/', icon: FaYoutube},
+    { label: 'Reddit', href: 'https://www.reddit.com/user/Priyanshuyk/', icon: FaReddit},
   ],
 }
 
@@ -48,14 +54,14 @@ export const featuredProjects = [
 ]
 
 export const aboutFacts = [
-  { label: 'Designation', value: 'Student' },
+  { label: 'Designation', value: 'Student, Software Developer and YouTuber' },
   {
-    label: 'Primary stack',
-    value: 'JavaScript, React, Node.js, Express, MongoDB, Tailwind CSS, and Appwrite',
+    label: 'Skills',
+    value: 'Web Development, App Development, Public Speaking and Leadership',
   },
   {
     label: 'Goal',
-    value: 'Become a well-rounded software engineer by building reliable, scalable applications',
+    value: 'Become a Software Developer and contribute to the Tech Community by writing code and sharing experiences',
   },
 ]
 
@@ -73,6 +79,7 @@ export const technologies = [
   { icon: SiCss, name: 'CSS3', role: 'Interface styling' },
   { icon: SiGit, name: 'Git', role: 'Version control' },
   { icon: FaGithub, name: 'GitHub', role: 'Collaboration' },
+  { icon: SiReact, name: 'React Native', role: 'App Development' },
 ]
 
 

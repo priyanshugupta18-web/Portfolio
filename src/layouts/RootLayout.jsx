@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { Outlet } from 'react-router-dom'
-import { Footer, PageLoader } from '../components'
+import { Footer, PageLoader, ScrollProgress } from '../components'
 
-const loaderDuration = 1650
+const loaderDuration = 1850
 
 export default function RootLayout() {
   const [loading, setLoading] = useState(true)
@@ -14,20 +14,24 @@ export default function RootLayout() {
   }, [])
 
   return (
-    <AnimatePresence mode="wait">
-      {loading ? (
-        <PageLoader key="loader" />
-      ) : (
-        <motion.div
-          key="site"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.45, ease: 'easeOut' }}
-        >
-          <Outlet />
-          <Footer />
-        </motion.div>
-      )}
-    </AnimatePresence>
+    <>
+      <div className="grain-overlay" aria-hidden="true" />
+      <AnimatePresence mode="wait">
+        {loading ? (
+          <PageLoader key="loader" />
+        ) : (
+          <motion.div
+            key="site"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <ScrollProgress />
+            <Outlet />
+            <Footer />
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   )
 }

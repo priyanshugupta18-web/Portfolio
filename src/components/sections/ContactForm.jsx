@@ -1,6 +1,8 @@
 import { useRef, useState } from 'react'
 import emailjs from '@emailjs/browser'
+import { motion } from 'framer-motion'
 import { ArrowUpRight, CheckCircle2, LoaderCircle } from 'lucide-react'
+import { staggerContainer, staggerItem } from '../../lib/animations'
 
 const emailConfig = {
   serviceId: import.meta.env.VITE_EMAILJS_SERVICE_ID,
@@ -40,8 +42,16 @@ export default function ContactForm() {
   }
 
   return (
-    <form className="contact-form" ref={form} onSubmit={handleSubmit}>
-      <div className="form-row">
+    <motion.form
+      className="contact-form"
+      ref={form}
+      onSubmit={handleSubmit}
+      variants={staggerContainer}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.2 }}
+    >
+      <motion.div className="form-row" variants={staggerItem}>
         <label>
           <span>Your name</span>
           <input type="text" name="name" placeholder="Priyanshu" autoComplete="name" required />
@@ -50,20 +60,25 @@ export default function ContactForm() {
           <span>Email address</span>
           <input type="email" name="email" placeholder="you@example.com" autoComplete="email" required />
         </label>
-      </div>
+      </motion.div>
 
-      <label>
+      <motion.label variants={staggerItem}>
         <span>Subject</span>
         <input type="text" name="title" placeholder="A new project" required />
-      </label>
-      <label>
+      </motion.label>
+      <motion.label variants={staggerItem}>
         <span>Tell me about it</span>
         <textarea name="message" rows="5" placeholder="A few details about your idea, timeline, or goals..." required />
-      </label>
+      </motion.label>
       <input type="hidden" name="time" value={new Date().toLocaleString()} readOnly />
 
-      <div className="form-footer">
-        <button type="submit" disabled={status === 'sending'}>
+      <motion.div className="form-footer" variants={staggerItem}>
+        <motion.button
+          type="submit"
+          disabled={status === 'sending'}
+          whileHover={{ scale: status === 'sending' ? 1 : 1.03, y: status === 'sending' ? 0 : -2 }}
+          whileTap={{ scale: 0.98 }}
+        >
           {status === 'sending' ? (
             <>
               <LoaderCircle className="form-spinner" size={17} /> Sending
@@ -73,14 +88,19 @@ export default function ContactForm() {
               Send message <ArrowUpRight size={17} />
             </>
           )}
-        </button>
+        </motion.button>
         {message && (
-          <p className={`form-message ${status}`} role="status">
+          <motion.p
+            className={`form-message ${status}`}
+            role="status"
+            initial={{ opacity: 0, y: 6 }}
+            animate={{ opacity: 1, y: 0 }}
+          >
             {status === 'success' && <CheckCircle2 size={15} />}
             {message}
-          </p>
+          </motion.p>
         )}
-      </div>
-    </form>
+      </motion.div>
+    </motion.form>
   )
 }

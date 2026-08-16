@@ -6,9 +6,7 @@ export default function Home() {
     <>
       <Navbar />
       <main>
-        <div className="shell">
-          <Hero />
-        </div>
+        <Hero />
         <AboutSection />
         <StackSection />
         <ProjectsSection />
