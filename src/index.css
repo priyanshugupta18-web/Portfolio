@@ -402,6 +402,12 @@ section[id] {
   transform-style: preserve-3d;
 }
 
+.hpf-bg picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
 .hpf-bg img {
   width: 100%;
   height: 100%;
@@ -409,6 +415,17 @@ section[id] {
   object-position: center 22%;
   display: block;
   filter: contrast(1.15) saturate(1.05) brightness(0.85);
+}
+
+@media (max-width: 1024px) {
+  .hpf-bg {
+    inset: -12% -5%;
+  }
+
+  .hpf-bg img {
+    object-position: center 18%;
+    filter: contrast(1.12) saturate(1.05) brightness(0.78);
+  }
 }
 
 /* Anamorphic Horizontal Lens Flare Streak */

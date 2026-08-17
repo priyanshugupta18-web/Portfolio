@@ -11,6 +11,7 @@ import { ChevronDown, Code2, Mic2, ArrowUpRight } from 'lucide-react'
 import { FaLinkedinIn, FaYoutube } from 'react-icons/fa'
 import { FaSquareXTwitter } from 'react-icons/fa6'
 import heroCinematic from '../../assets/heroCinematic.jpg'
+import heroMobileCinematic from '../../assets/heroMobileCinematic.jpg'
 import { profile } from '../../data/portfolio'
 import { staggerContainer, staggerItem } from '../../lib/animations'
 
@@ -158,12 +159,15 @@ export default function Hero() {
           }}
           aria-hidden="true"
         >
-          <img
-            src={heroCinematic}
-            alt={`${profile.name} cinematic portrait`}
-            fetchPriority="high"
-            loading="eager"
-          />
+          <picture>
+            <source media="(max-width: 1024px)" srcSet={heroMobileCinematic} />
+            <img
+              src={heroCinematic}
+              alt={`${profile.name} cinematic portrait`}
+              fetchPriority="high"
+              loading="eager"
+            />
+          </picture>
         </motion.div>
 
         {/* Anamorphic Lens Flare Streak */}
