@@ -15,7 +15,6 @@ import {
 } from 'react-icons/si'
 import { FaSquareXTwitter } from "react-icons/fa6";
 import { FaYoutube, FaReddit } from "react-icons/fa";
-import writeItCover from '../assets/writeit-editorial.jpg'
 
 export const profile = {
   name: 'Priyanshu Gupta',
@@ -43,7 +42,6 @@ export const featuredProjects = [
     title: 'WriteIt',
     eyebrow: 'Full-stack blogging platform',
     year: '2026',
-    image: writeItCover,
     imageAlt: 'Manuscript paper and letterpress type representing WriteIt',
     description:
       'A full-stack blogging platform for securely creating, editing, publishing, and managing rich-text articles with image uploads. It combines protected routes, state management, Appwrite services, and a responsive animated interface.',
