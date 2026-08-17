@@ -1,12 +1,12 @@
 import { useRef } from 'react'
 import { motion, useMotionValue, useSpring } from 'framer-motion'
-import { ArrowUpRight, ExternalLink } from 'lucide-react'
+import { ArrowUpRight, Code2 } from 'lucide-react'
 import { FaGithub } from 'react-icons/fa'
 import { featuredProjects } from '../../data/portfolio'
 import { revealOnScroll, staggerContainer, staggerItem } from '../../lib/animations'
 import SectionHeading from './SectionHeading'
 
-function FeaturedProjectCard({ project }) {
+function FeaturedProjectCard({ project, index }) {
   const cardRef = useRef(null)
   const rotateXMotion = useMotionValue(0)
   const rotateYMotion = useMotionValue(0)
@@ -20,8 +20,8 @@ function FeaturedProjectCard({ project }) {
     const rect = node.getBoundingClientRect()
     const x = (event.clientX - rect.left) / rect.width - 0.5
     const y = (event.clientY - rect.top) / rect.height - 0.5
-    rotateYMotion.set(x * 10)
-    rotateXMotion.set(y * -10)
+    rotateYMotion.set(x * 8)
+    rotateXMotion.set(y * -8)
   }
 
   function resetTilt() {
@@ -29,75 +29,90 @@ function FeaturedProjectCard({ project }) {
     rotateYMotion.set(0)
   }
 
+  const projectNum = String(index + 1).padStart(2, '0')
+
   return (
     <motion.article
       ref={cardRef}
-      className="featured-project project-card-3d"
+      className="featured-project project-card-3d project-text-card"
       {...revealOnScroll}
       onMouseMove={handleMove}
       onMouseLeave={resetTilt}
       style={{ rotateX, rotateY, transformPerspective: 1200 }}
     >
       <span className="project-card-glow" aria-hidden="true" />
-
-      <a className="project-image" href={project.liveUrl} target="_blank" rel="noreferrer">
-        <motion.img
-          src={project.image}
-          alt={project.imageAlt}
-          whileHover={{ scale: 1.05 }}
-          transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
-        />
-        <span>
-          <ExternalLink size={16} /> View live
-        </span>
-      </a>
+      <div className="project-card-watermark" aria-hidden="true">{projectNum}</div>
 
       <motion.div
-        className="project-copy"
+        className="project-copy-full"
         variants={staggerContainer}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.25 }}
+        viewport={{ once: true, amount: 0.2 }}
       >
-        <motion.div className="project-top" variants={staggerItem}>
-          <span>{project.eyebrow}</span>
-          <span>{project.year}</span>
+        {/* Top bar: Number + Category + Year */}
+        <motion.div className="project-top-bar" variants={staggerItem}>
+          <div className="project-num-badge">
+            <span className="project-num-dot" />
+            <span>PROJECT {projectNum}</span>
+          </div>
+          <div className="project-top-meta">
+            <span className="project-eyebrow-tag">{project.eyebrow}</span>
+            <span className="project-year-pill">{project.year}</span>
+          </div>
         </motion.div>
 
-        <motion.div variants={staggerItem}>
-          <h3>{project.title}</h3>
-          <p>{project.description}</p>
+        {/* Title & Description */}
+        <motion.div className="project-main-content" variants={staggerItem}>
+          <h3 className="project-title">
+            <a href={project.liveUrl} target="_blank" rel="noreferrer">
+              {project.title}
+            </a>
+          </h3>
+          <p className="project-description">{project.description}</p>
         </motion.div>
 
-        <motion.div variants={staggerItem}>
-          <ul>
+        {/* Tech Stack Pills */}
+        <motion.div className="project-tech-bar" variants={staggerItem}>
+          <span className="tech-label"><Code2 size={14} /> Stack:</span>
+          <ul className="project-tech-list">
             {project.technologies.map((technology) => (
               <motion.li
                 key={technology}
-                whileHover={{ scale: 1.06, borderColor: 'rgba(242,181,28,0.55)' }}
+                className="project-tech-pill"
+                whileHover={{ scale: 1.05, y: -1 }}
               >
                 {technology}
               </motion.li>
             ))}
           </ul>
-          <div className="project-links">
-            <motion.a
-              href={project.liveUrl}
-              target="_blank"
-              rel="noreferrer"
-              whileHover={{ x: 3 }}
-            >
-              Live project <ArrowUpRight size={15} />
-            </motion.a>
-            <motion.a
-              href={project.sourceUrl}
-              target="_blank"
-              rel="noreferrer"
-              whileHover={{ x: 3 }}
-            >
-              <FaGithub /> Source code
-            </motion.a>
-          </div>
+        </motion.div>
+
+        {/* Action Buttons Bar */}
+        <motion.div className="project-actions-bar" variants={staggerItem}>
+          <motion.a
+            className="project-btn project-btn-primary"
+            href={project.liveUrl}
+            target="_blank"
+            rel="noreferrer"
+            whileHover={{ scale: 1.04, y: -2 }}
+            whileTap={{ scale: 0.97 }}
+          >
+            <span>Live Project</span>
+            <ArrowUpRight size={16} />
+          </motion.a>
+
+          <motion.a
+            className="project-btn project-btn-secondary"
+            href={project.sourceUrl}
+            target="_blank"
+            rel="noreferrer"
+            whileHover={{ scale: 1.04, y: -2 }}
+            whileTap={{ scale: 0.97 }}
+          >
+            <FaGithub size={16} />
+            <span>Source Code</span>
+          </motion.a>
         </motion.div>
       </motion.div>
     </motion.article>
@@ -109,12 +124,14 @@ export default function ProjectsSection() {
     <section className="work-section" id="work">
       <div className="shell">
         <SectionHeading
-          title="Projects"
-          description="A curated showcase of the best projects I have built so far."
+          title="Featured Projects"
+          description="A curated showcase of high-impact software, platforms, and open-source tools I've engineered."
         />
-        {featuredProjects.map((project) => (
-          <FeaturedProjectCard key={project.title} project={project} />
-        ))}
+        <div className="projects-grid">
+          {featuredProjects.map((project, index) => (
+            <FeaturedProjectCard key={project.title} project={project} index={index} />
+          ))}
+        </div>
       </div>
     </section>
   )
