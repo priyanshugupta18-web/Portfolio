@@ -23,9 +23,9 @@ export const profile = {
   intro:
     'Hi, I am Priyanshu Gupta, a CSE undergrad and an aspiring software developer.',
   navItems: [
-    { label: 'Projects', href: '#work' },
     { label: 'About', href: '#about' },
     { label: 'Stack', href: '#stack' },
+    { label: 'Projects', href: '#work' },
     { label: 'Contact', href: '#contact' },
   ],
   socialLinks: [

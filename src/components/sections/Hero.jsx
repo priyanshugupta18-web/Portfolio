@@ -10,9 +10,6 @@ import {
 import { ChevronDown, Code2, Mic2, ArrowUpRight } from 'lucide-react'
 import { FaLinkedinIn, FaYoutube } from 'react-icons/fa'
 import { FaSquareXTwitter } from 'react-icons/fa6'
-import heroCinematic from '../../assets/heroCinematic.jpg'
-import heroMobileCinematic from '../../assets/heroMobileCinematic.jpg'
-import { profile } from '../../data/portfolio'
 import { staggerContainer, staggerItem } from '../../lib/animations'
 
 const heroSocials = [
@@ -69,7 +66,7 @@ function SocialMagneticButton({ href, name, icon: Icon, className }) {
       style={{ x: springX, y: springY }}
       onMouseMove={handleMove}
       onMouseLeave={reset}
-      whileHover={{ scale: 1.05, y: -2 }}
+      whileHover={{ scale: 1.06, y: -3 }}
       whileTap={{ scale: 0.96 }}
     >
       <span className="social-icon-box">
@@ -81,12 +78,12 @@ function SocialMagneticButton({ href, name, icon: Icon, className }) {
   )
 }
 
-/* ── Ambient 3D Bokeh Discs ── */
+/* ── Ambient 3D Glowing Bokeh Discs ── */
 const BOKEH_ORBS = [
-  { id: 1, top: '15%', left: '12%', size: 140, blur: 50, color: 'rgba(242, 181, 28, 0.18)', dur: 7, delay: 0 },
-  { id: 2, top: '65%', right: '10%', size: 200, blur: 70, color: 'rgba(177, 66, 214, 0.14)', dur: 9, delay: 1 },
-  { id: 3, top: '30%', right: '25%', size: 110, blur: 45, color: 'rgba(242, 181, 28, 0.15)', dur: 6.5, delay: 0.5 },
-  { id: 4, top: '70%', left: '20%', size: 160, blur: 60, color: 'rgba(242, 181, 28, 0.12)', dur: 8, delay: 1.5 },
+  { id: 1, top: '15%', left: '10%', size: 280, blur: 70, color: 'rgba(242, 181, 28, 0.16)', dur: 8, delay: 0 },
+  { id: 2, top: '55%', right: '8%', size: 340, blur: 90, color: 'rgba(177, 66, 214, 0.13)', dur: 10, delay: 1 },
+  { id: 3, top: '25%', right: '22%', size: 220, blur: 60, color: 'rgba(242, 181, 28, 0.14)', dur: 7, delay: 0.5 },
+  { id: 4, top: '75%', left: '18%', size: 300, blur: 80, color: 'rgba(242, 181, 28, 0.11)', dur: 9, delay: 1.5 },
 ]
 
 export default function Hero() {
@@ -98,28 +95,28 @@ export default function Hero() {
     offset: ['start start', 'end start'],
   })
 
-  /* ── Mouse 3D Camera Orbit Simulation ── */
+  /* ── Mouse 3D Camera & Grid Tilt Simulation ── */
   const mouseX = useMotionValue(0)
   const mouseY = useMotionValue(0)
 
-  const smoothRotY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-8, 8]), { stiffness: 60, damping: 25 })
-  const smoothRotX = useSpring(useTransform(mouseY, [-0.5, 0.5], [6, -6]), { stiffness: 60, damping: 25 })
-  const smoothTransX = useSpring(useTransform(mouseX, [-0.5, 0.5], [-20, 20]), { stiffness: 70, damping: 28 })
-  const smoothTransY = useSpring(useTransform(mouseY, [-0.5, 0.5], [-16, 16]), { stiffness: 70, damping: 28 })
+  const smoothRotY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-10, 10]), { stiffness: 60, damping: 25 })
+  const smoothRotX = useSpring(useTransform(mouseY, [-0.5, 0.5], [8, -8]), { stiffness: 60, damping: 25 })
+  const smoothTransX = useSpring(useTransform(mouseX, [-0.5, 0.5], [-25, 25]), { stiffness: 70, damping: 28 })
+  const smoothTransY = useSpring(useTransform(mouseY, [-0.5, 0.5], [-20, 20]), { stiffness: 70, damping: 28 })
 
   /* ── Scroll-driven Background Parallax Zoom & Lift ── */
-  const bgScale = useTransform(scrollYProgress, [0, 1], [1.02, 1.15])
-  const bgY     = useTransform(scrollYProgress, [0, 1], ['0%', '25%'])
-  const textY   = useTransform(scrollYProgress, [0, 1], ['0%', '-15%'])
+  const gridY   = useTransform(scrollYProgress, [0, 1], ['0%', '30%'])
+  const gridRot = useTransform(scrollYProgress, [0, 1], [65, 75])
+  const textY   = useTransform(scrollYProgress, [0, 1], ['0%', '-12%'])
 
   /* ── Anamorphic Lens Flare Sweep ── */
   const flareX = useTransform(scrollYProgress, [0, 1], ['-20%', '120%'])
-  const flareOpacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0.35, 0.7, 0.45, 0.2])
+  const flareOpacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0.35, 0.75, 0.5, 0.2])
 
   /* ── Spotlight on cursor ── */
   const spotX = useMotionValue('50%')
   const spotY = useMotionValue('50%')
-  const spotlight = useMotionTemplate`radial-gradient(600px circle at ${spotX} ${spotY}, rgba(242,181,28,0.12), transparent 70%)`
+  const spotlight = useMotionTemplate`radial-gradient(650px circle at ${spotX} ${spotY}, rgba(242,181,28,0.13), transparent 70%)`
 
   function handleMouseMove(e) {
     if (!window.matchMedia('(hover: hover)').matches) return
@@ -141,34 +138,25 @@ export default function Hero() {
   return (
     <section
       ref={sectionRef}
-      className="hero hero-parallax-fullbleed"
+      className="hero hero-parallax-fullbleed hero-tech-mesh"
       id="top"
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
     >
-      {/* ━━ Full-Bleed 3D Parallax Background Image ━━ */}
+      {/* ━━ Full-Bleed 3D Perspective Tech Matrix Stage ━━ */}
       <div className="hpf-3d-stage">
+        {/* 3D Interactive Perspective Grid Plane */}
         <motion.div
-          className="hpf-bg"
+          className="hpf-grid-plane"
           style={{
-            scale: bgScale,
-            y: bgY,
-            rotateY: smoothRotY,
-            rotateX: smoothRotX,
+            y: gridY,
+            rotateX: gridRot,
+            rotateY: smoothRotX,
+            rotateZ: smoothRotY,
             x: smoothTransX,
           }}
           aria-hidden="true"
-        >
-          <picture>
-            <source media="(max-width: 1024px)" srcSet={heroMobileCinematic} />
-            <img
-              src={heroCinematic}
-              alt={`${profile.name} cinematic portrait`}
-              fetchPriority="high"
-              loading="eager"
-            />
-          </picture>
-        </motion.div>
+        />
 
         {/* Anamorphic Lens Flare Streak */}
         <motion.div
@@ -181,7 +169,7 @@ export default function Hero() {
           aria-hidden="true"
         />
 
-        {/* Ambient Bokeh Orbs */}
+        {/* Ambient 3D Bokeh Orbs */}
         <div className="hpf-bokeh-container" aria-hidden="true">
           {BOKEH_ORBS.map((orb) => (
             <motion.div
@@ -200,7 +188,7 @@ export default function Hero() {
               }}
               animate={{
                 scale: [1, 1.25, 1],
-                opacity: [0.6, 0.9, 0.6],
+                opacity: [0.55, 0.85, 0.55],
               }}
               transition={{
                 duration: orb.dur,
@@ -234,8 +222,6 @@ export default function Hero() {
               <span>CSE Undergrad</span>
               <span className="eyebrow-sep">/</span>
               <span>Software Developer</span>
-              <span className="eyebrow-sep">/</span>
-              <span>Creator</span>
             </div>
 
             {/* Heading */}
@@ -258,10 +244,14 @@ export default function Hero() {
             </div>
           </motion.div>
 
-          {/* Right Column: Clean Static HUD Badges */}
+          {/* Right Column: Interactive Pop-Up Badges */}
           <motion.div className="hpf-badges-column" variants={staggerItem}>
-            {/* Static HUD Badge 1 */}
-            <div className="hero-portrait-tag hpf-hud-badge static-badge">
+            <motion.div
+              className="hero-portrait-tag hpf-hud-badge static-badge"
+              whileHover={{ scale: 1.08, y: -8 }}
+              whileTap={{ scale: 0.96 }}
+              transition={{ type: 'spring', stiffness: 320, damping: 20 }}
+            >
               <div className="tag-icon-wrap">
                 <Mic2 size={16} />
               </div>
@@ -269,10 +259,14 @@ export default function Hero() {
                 <b>Public Speaker</b>
                 <span>Tech talks on YouTube</span>
               </div>
-            </div>
+            </motion.div>
 
-            {/* Static HUD Badge 2 */}
-            <div className="hero-portrait-tag hpf-hud-badge static-badge">
+            <motion.div
+              className="hero-portrait-tag hpf-hud-badge static-badge"
+              whileHover={{ scale: 1.08, y: -8 }}
+              whileTap={{ scale: 0.96 }}
+              transition={{ type: 'spring', stiffness: 320, damping: 20 }}
+            >
               <div className="tag-icon-wrap">
                 <Code2 size={16} />
               </div>
@@ -280,7 +274,7 @@ export default function Hero() {
                 <b>Full-stack</b>
                 <span>React, Node.js &amp; App Dev</span>
               </div>
-            </div>
+            </motion.div>
           </motion.div>
         </motion.div>
 
