@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap');
 @import "tailwindcss";
 @import "./styles/motion.css";
 
@@ -7,17 +7,17 @@
    ========================================================================== */
 :root {
   --font-body: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-heading: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
+  --font-heading: 'Outfit', 'Plus Jakarta Sans', system-ui, sans-serif;
   --font-serif: 'Instrument Serif', Georgia, serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
-  --bg: #20242C;
-  --surface: #262B34;
-  --surface-card: #2B303B;
-  --surface-card-hover: #323744;
+  --bg: #2b303c;
+  --surface: #323846;
+  --surface-card: #363d4c;
+  --surface-card-hover: #3f4758;
   --ink: #ffffff;
-  --ink-soft: #9EA5B4;
-  --muted: #6E7585;
+  --ink-soft: #a0a7b5;
+  --muted: #727a8a;
   --line: rgba(255, 255, 255, 0.09);
   --line-strong: rgba(255, 255, 255, 0.18);
   --accent: #F4B836;
@@ -341,12 +341,14 @@ section[id] {
 .hero-carlos-exact-stage {
   position: relative;
   isolation: isolate;
+  min-height: 100vh;
   min-height: 100svh;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  justify-content: flex-end;
   overflow: hidden;
-  padding-top: clamp(100px, 14vh, 140px);
-  padding-bottom: clamp(48px, 8vh, 80px);
+  padding-top: clamp(120px, 16vh, 160px);
+  padding-bottom: 0;
   background: var(--bg);
 }
 
@@ -354,13 +356,14 @@ section[id] {
   position: relative;
   z-index: 2;
   width: 100%;
+  padding-bottom: 0;
 }
 
 .carlos-exact-grid {
   display: grid;
-  grid-template-columns: minmax(0, 0.95fr) minmax(320px, 1.1fr) minmax(0, 0.95fr);
-  gap: clamp(24px, 3vw, 48px);
-  align-items: center;
+  grid-template-columns: minmax(0, 1fr) minmax(340px, 1.25fr) minmax(0, 1fr);
+  gap: clamp(24px, 3.5vw, 56px);
+  align-items: flex-end;
 }
 
 /* Left Column: Display Name & Social Links */
@@ -368,38 +371,41 @@ section[id] {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  padding-bottom: clamp(40px, 7vh, 80px);
 }
 
 .carlos-display-name {
   margin: 0;
-  font-size: clamp(42px, 5.2vw, 76px);
-  line-height: 0.98;
+  font-family: var(--font-heading);
+  font-size: clamp(48px, 5.8vw, 78px);
+  line-height: 0.96;
   font-weight: 800;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.03em;
   color: #ffffff;
 }
 
 .carlos-name-bar {
-  width: 44px;
-  height: 5px;
-  border-radius: 999px;
+  width: 38px;
+  height: 4px;
+  border-radius: 2px;
   background: var(--accent);
-  margin-top: 22px;
-  margin-bottom: 32px;
+  margin-top: 24px;
+  margin-bottom: 36px;
 }
 
 .carlos-social-row {
   display: flex;
   align-items: center;
-  gap: 18px;
+  gap: 20px;
 }
 
 .carlos-social-link {
   display: grid;
   place-items: center;
-  color: rgba(255, 255, 255, 0.55);
+  color: rgba(255, 255, 255, 0.5);
   background: transparent;
   border: none;
+  font-size: 17px;
   transition: color 0.2s ease, transform 0.2s ease;
 }
 
@@ -408,32 +414,34 @@ section[id] {
   transform: translateY(-2px);
 }
 
-/* Middle Column: Seamless Priyanshu Portrait (NO inner frame or box) */
+/* Middle Column: Large Grounded Priyanshu Portrait Cutout */
 .carlos-center-portrait-column {
   display: flex;
   justify-content: center;
   align-items: flex-end;
+  height: 100%;
 }
 
 .carlos-seamless-portrait {
   position: relative;
-  width: min(100%, 460px);
-  height: 560px;
+  width: 100%;
+  max-width: 520px;
+  height: clamp(500px, 76vh, 720px);
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  will-change: transform;
 }
 
 .carlos-exact-portrait-img {
+  width: auto;
+  height: 100%;
   max-width: 100%;
-  max-height: 100%;
   object-fit: contain;
   object-position: center bottom;
   display: block;
   border-radius: 0;
   background: transparent;
-  filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.45));
+  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.35));
 }
 
 /* Right Column: Introduction & Story Button */
@@ -441,38 +449,41 @@ section[id] {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  padding-bottom: clamp(40px, 7vh, 80px);
 }
 
 .carlos-intro-eyebrow {
   display: flex;
   align-items: center;
   gap: 8px;
-  color: var(--ink-soft);
+  color: rgba(255, 255, 255, 0.55);
   font-family: var(--font-body);
   font-size: 14px;
   font-weight: 500;
-  margin-bottom: 16px;
+  margin-bottom: 18px;
 }
 
 .eyebrow-dash {
-  color: var(--ink-soft);
+  color: rgba(255, 255, 255, 0.55);
   font-weight: 400;
 }
 
 .carlos-intro-headline {
   margin: 0 0 16px;
+  font-family: var(--font-heading);
   font-size: clamp(24px, 2.6vw, 36px);
-  line-height: 1.28;
-  font-weight: 750;
+  line-height: 1.25;
+  font-weight: 700;
   color: #ffffff;
-  letter-spacing: -0.025em;
+  letter-spacing: -0.02em;
 }
 
 .carlos-intro-desc {
-  margin: 0 0 28px;
-  color: var(--ink-soft);
-  font-size: clamp(14.5px, 1.2vw, 15.5px);
-  line-height: 1.7;
+  margin: 0 0 32px;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: clamp(14px, 1.1vw, 15.5px);
+  line-height: 1.65;
+  max-width: 380px;
 }
 
 .carlos-story-btn {
@@ -483,7 +494,7 @@ section[id] {
   font-size: 15.5px;
   font-weight: 700;
   text-decoration: none;
-  transition: gap 0.25s ease, transform 0.25s ease;
+  transition: gap 0.25s ease;
 }
 
 .carlos-story-btn:hover {
