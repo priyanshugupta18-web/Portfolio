@@ -69,23 +69,7 @@ export default function Navbar() {
       variants={navVariants}
     >
       <nav className="nav shell" aria-label="Main navigation">
-        <a
-          className="carlos-brand"
-          href="#top"
-          aria-label={`${profile.name}, home`}
-          onClick={() => handleNavClick('#top')}
-        >
-          <motion.div
-            className="carlos-logo-mark"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M16 6C10.4772 6 6 10.4772 6 16C6 21.5228 10.4772 26 16 26C21.5228 26 26 21.5228 26 16H16V6Z" fill="#F4B836"/>
-              <path d="M16 6C21.5228 6 26 10.4772 26 16C26 21.5228 21.5228 26 16 26V6Z" fill="#F4B836" fillOpacity="0.85"/>
-            </svg>
-          </motion.div>
-        </a>
+        <div className="nav-spacer" aria-hidden="true" />
 
         <div className="nav-links desktop-only">
           {profile.navItems.map((item) => {
