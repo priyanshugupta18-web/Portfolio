@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { Outlet } from 'react-router-dom'
 import { Footer, PageLoader, ScrollProgress } from '../components'
 
-const loaderDuration = 700
+const loaderDuration = 420
 
 export default function RootLayout() {
   const [loading, setLoading] = useState(true)
