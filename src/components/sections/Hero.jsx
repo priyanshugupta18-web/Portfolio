@@ -4,7 +4,6 @@ import {
   useMotionTemplate,
   useMotionValue,
   useScroll,
-  useSpring,
   useTransform,
 } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
@@ -41,36 +40,24 @@ export default function Hero() {
     offset: ['start start', 'end start'],
   })
 
-  /* ── Mouse 3D Camera Simulation ── */
-  const mouseX = useMotionValue(0)
-  const mouseY = useMotionValue(0)
-
-  const smoothRotY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-6, 6]), { stiffness: 60, damping: 25 })
-  const smoothRotX = useSpring(useTransform(mouseY, [-0.5, 0.5], [4, -4]), { stiffness: 60, damping: 25 })
-  const smoothTransX = useSpring(useTransform(mouseX, [-0.5, 0.5], [-12, 12]), { stiffness: 70, damping: 28 })
-
   const textY = useTransform(scrollYProgress, [0, 1], ['0%', '-8%'])
 
   /* ── Spotlight on cursor ── */
   const spotX = useMotionValue('50%')
   const spotY = useMotionValue('50%')
-  const spotlight = useMotionTemplate`radial-gradient(650px circle at ${spotX} ${spotY}, rgba(242,181,28,0.12), transparent 70%)`
+  const spotlight = useMotionTemplate`radial-gradient(650px circle at ${spotX} ${spotY}, rgba(244,184,54,0.08), transparent 70%)`
 
   function handleMouseMove(e) {
     if (!window.matchMedia('(hover: hover)').matches) return
     const rect = sectionRef.current?.getBoundingClientRect()
     if (!rect) return
-    const normX = (e.clientX - rect.left) / rect.width - 0.5
-    const normY = (e.clientY - rect.top) / rect.height - 0.5
-    mouseX.set(normX)
-    mouseY.set(normY)
     spotX.set(`${e.clientX - rect.left}px`)
     spotY.set(`${e.clientY - rect.top}px`)
   }
 
   function handleMouseLeave() {
-    mouseX.set(0)
-    mouseY.set(0)
+    spotX.set('50%')
+    spotY.set('50%')
   }
 
   return (
@@ -118,16 +105,9 @@ export default function Hero() {
             </div>
           </motion.div>
 
-          {/* Middle Column: Seamless Priyanshu Portrait (NO frame wrapper) */}
+          {/* Middle Column: Seamless Priyanshu Portrait (Ground Static Stage) */}
           <motion.div className="carlos-center-portrait-column" variants={staggerItem}>
-            <motion.div
-              className="carlos-seamless-portrait"
-              style={{
-                rotateY: smoothRotY,
-                rotateX: smoothRotX,
-                x: smoothTransX,
-              }}
-            >
+            <div className="carlos-seamless-portrait">
               <img
                 src={priyanshuCutout}
                 alt={`${profile.name} portrait`}
@@ -135,7 +115,7 @@ export default function Hero() {
                 fetchPriority="high"
                 loading="eager"
               />
-            </motion.div>
+            </div>
           </motion.div>
 
           {/* Right Column: Introduction & Story Link */}
