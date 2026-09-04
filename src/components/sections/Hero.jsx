@@ -7,10 +7,10 @@ import {
   useSpring,
   useTransform,
 } from 'framer-motion'
-import { ChevronDown, ArrowUpRight, Code2, Mic2, Sparkles, Terminal } from 'lucide-react'
+import { ChevronDown, ArrowUpRight, Code2, Mic2, Terminal } from 'lucide-react'
 import { FaLinkedinIn, FaYoutube } from 'react-icons/fa'
 import { FaSquareXTwitter } from 'react-icons/fa6'
-import carlosPortrait from '../../assets/carlosPortrait.jpg'
+import priyanshuCarlosPortrait from '../../assets/priyanshuCarlosPortrait.jpg'
 import { profile } from '../../data/portfolio'
 import { staggerContainer, staggerItem } from '../../lib/animations'
 
@@ -176,7 +176,7 @@ export default function Hero() {
             </div>
           </motion.div>
 
-          {/* Right Column: Carlos Dark Studio Portrait Stage */}
+          {/* Right Column: Seamless Carlos Dark Portrait Tile */}
           <motion.div className="carlos-portrait-column" variants={staggerItem}>
             <motion.div
               className="carlos-portrait-card"
@@ -185,22 +185,17 @@ export default function Hero() {
                 rotateX: smoothRotX,
                 x: smoothTransX,
               }}
-              whileHover={{ scale: 1.02 }}
-              transition={{ type: 'spring', stiffness: 260, damping: 20 }}
+              whileHover={{ scale: 1.025, y: -4 }}
+              transition={{ type: 'spring', stiffness: 280, damping: 20 }}
             >
               <div className="carlos-portrait-glow" aria-hidden="true" />
-              <div className="carlos-portrait-frame">
-                <img
-                  src={carlosPortrait}
-                  alt={`${profile.name} portrait`}
-                  fetchPriority="high"
-                  loading="eager"
-                />
-              </div>
-              <div className="carlos-portrait-badge">
-                <Sparkles size={14} className="badge-sparkle" />
-                <span>CS Undergrad &amp; Developer</span>
-              </div>
+              <img
+                src={priyanshuCarlosPortrait}
+                alt={`${profile.name} portrait`}
+                className="carlos-portrait-img"
+                fetchPriority="high"
+                loading="eager"
+              />
             </motion.div>
           </motion.div>
         </motion.div>
