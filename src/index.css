@@ -336,49 +336,86 @@ section[id] {
 }
 
 /* ==========================================================================
-   Hero Section (Carlos Mendoza Dribbble Exact 3-Column Layout)
+   Hero Section — Carlos Dribbble Layout (Overlapping Portrait)
+   Portrait is absolutely positioned behind the text columns.
+   Text sits on a 2-column grid, vertically centered.
    ========================================================================== */
-.hero-carlos-exact-stage {
+
+/* Section container */
+.carlos-hero {
   position: relative;
   isolation: isolate;
-  min-height: 100vh;
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
+  height: 100vh;
+  height: 100svh;
   overflow: hidden;
-  padding-top: clamp(120px, 16vh, 160px);
-  padding-bottom: 0;
   background: var(--bg);
 }
 
-.carlos-exact-hero-inner {
-  position: relative;
+/* Spotlight layer */
+.carlos-hero .hero-spotlight {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* ── Portrait layer: absolutely positioned, bottom-center ── */
+.carlos-hero-portrait {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 2;
-  width: 100%;
-  padding-bottom: 0;
-}
-
-.carlos-exact-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(340px, 1.25fr) minmax(0, 1fr);
-  gap: clamp(24px, 3.5vw, 56px);
+  height: clamp(440px, 72vh, 680px);
+  width: auto;
+  display: flex;
   align-items: flex-end;
+  justify-content: center;
+  pointer-events: none;
 }
 
-/* Left Column: Display Name & Social Links */
-.carlos-name-column {
+.carlos-hero-portrait img {
+  height: 100%;
+  width: auto;
+  max-width: none;
+  object-fit: contain;
+  object-position: center bottom;
+  display: block;
+  filter: drop-shadow(0 12px 32px rgba(0, 0, 0, 0.4));
+}
+
+/* ── Text content layer: fills viewport, overlaid above portrait ── */
+.carlos-hero-content {
+  position: relative;
+  z-index: 3;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding-top: clamp(80px, 10vh, 120px);
+  padding-bottom: clamp(60px, 8vh, 100px);
+}
+
+/* 2-column grid: left = name, right = intro */
+.carlos-hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(60px, 12vw, 200px);
+  width: 100%;
+  align-items: center;
+}
+
+/* ── Left column: Name + Social ── */
+.carlos-left {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding-bottom: clamp(40px, 7vh, 80px);
 }
 
 .carlos-display-name {
   margin: 0;
   font-family: var(--font-heading);
-  font-size: clamp(48px, 5.8vw, 78px);
-  line-height: 0.96;
+  font-size: clamp(52px, 6vw, 82px);
+  line-height: 0.95;
   font-weight: 800;
   letter-spacing: -0.03em;
   color: #ffffff;
@@ -389,8 +426,8 @@ section[id] {
   height: 4px;
   border-radius: 2px;
   background: var(--accent);
-  margin-top: 24px;
-  margin-bottom: 36px;
+  margin-top: 28px;
+  margin-bottom: 40px;
 }
 
 .carlos-social-row {
@@ -414,42 +451,11 @@ section[id] {
   transform: translateY(-2px);
 }
 
-/* Middle Column: Large Grounded Priyanshu Portrait Cutout */
-.carlos-center-portrait-column {
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  height: 100%;
-}
-
-.carlos-seamless-portrait {
-  position: relative;
-  width: 100%;
-  max-width: 520px;
-  height: clamp(500px, 76vh, 720px);
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-}
-
-.carlos-exact-portrait-img {
-  width: auto;
-  height: 100%;
-  max-width: 100%;
-  object-fit: contain;
-  object-position: center bottom;
-  display: block;
-  border-radius: 0;
-  background: transparent;
-  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.35));
-}
-
-/* Right Column: Introduction & Story Button */
-.carlos-intro-column {
+/* ── Right column: Introduction ── */
+.carlos-right {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding-bottom: clamp(40px, 7vh, 80px);
 }
 
 .carlos-intro-eyebrow {
@@ -1832,15 +1838,15 @@ section[id] {
    Mobile Devices: < 700px
    -------------------------------------------------------------------------- */
 @media (max-width: 960px) {
-  .carlos-exact-grid {
+  .carlos-hero-grid {
     grid-template-columns: 1fr;
     gap: 36px;
     text-align: center;
     justify-items: center;
   }
 
-  .carlos-name-column,
-  .carlos-intro-column {
+  .carlos-left,
+  .carlos-right {
     align-items: center;
     text-align: center;
   }
@@ -1853,10 +1859,12 @@ section[id] {
     text-align: center;
   }
 
-  .carlos-seamless-portrait {
-    width: min(85%, 320px);
-    height: 380px;
-    order: -1;
+  .carlos-hero-portrait {
+    height: clamp(280px, 50vh, 400px);
+  }
+
+  .carlos-intro-desc {
+    max-width: 100%;
   }
 }
 
