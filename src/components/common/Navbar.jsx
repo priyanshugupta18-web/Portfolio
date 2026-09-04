@@ -98,13 +98,6 @@ export default function Navbar() {
                 onClick={() => handleNavClick(item.href)}
               >
                 <span>{item.label}</span>
-                {isActive && (
-                  <motion.span
-                    layoutId="carlosActiveDot"
-                    className="carlos-nav-dot"
-                    transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-                  />
-                )}
               </a>
             )
           })}

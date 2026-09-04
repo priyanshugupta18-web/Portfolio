@@ -9,7 +9,7 @@ import {
 import { ArrowRight } from 'lucide-react'
 import { FaLinkedinIn, FaYoutube } from 'react-icons/fa'
 import { FaSquareXTwitter } from 'react-icons/fa6'
-import priyanshuCutout from '../../assets/priyanshuCutout.png'
+import priyanshuCutout from '../../assets/priyanshuHero.png'
 import { profile } from '../../data/portfolio'
 import { staggerContainer, staggerItem } from '../../lib/animations'
 
