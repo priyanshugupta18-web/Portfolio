@@ -7,9 +7,11 @@ import {
   useSpring,
   useTransform,
 } from 'framer-motion'
-import { ChevronDown, Code2, Mic2, ArrowUpRight } from 'lucide-react'
+import { ChevronDown, ArrowUpRight, Code2, Mic2, Sparkles, Terminal } from 'lucide-react'
 import { FaLinkedinIn, FaYoutube } from 'react-icons/fa'
 import { FaSquareXTwitter } from 'react-icons/fa6'
+import carlosPortrait from '../../assets/carlosPortrait.jpg'
+import { profile } from '../../data/portfolio'
 import { staggerContainer, staggerItem } from '../../lib/animations'
 
 const heroSocials = [
@@ -31,6 +33,12 @@ const heroSocials = [
     icon: FaSquareXTwitter,
     className: 'social-btn-x',
   },
+]
+
+const HERO_METRICS = [
+  { label: 'Specialization', value: 'Full-Stack & Apps', icon: Code2 },
+  { label: 'Public Creator', value: 'YouTube Tech Speaker', icon: Mic2 },
+  { label: 'Engineering', value: 'Production Code', icon: Terminal },
 ]
 
 function SocialMagneticButton({ href, name, icon: Icon, className }) {
@@ -78,45 +86,29 @@ function SocialMagneticButton({ href, name, icon: Icon, className }) {
   )
 }
 
-/* ── Ambient 3D Glowing Bokeh Discs ── */
-const BOKEH_ORBS = [
-  { id: 1, top: '15%', left: '10%', size: 280, blur: 70, color: 'rgba(242, 181, 28, 0.16)', dur: 8, delay: 0 },
-  { id: 2, top: '55%', right: '8%', size: 340, blur: 90, color: 'rgba(177, 66, 214, 0.13)', dur: 10, delay: 1 },
-  { id: 3, top: '25%', right: '22%', size: 220, blur: 60, color: 'rgba(242, 181, 28, 0.14)', dur: 7, delay: 0.5 },
-  { id: 4, top: '75%', left: '18%', size: 300, blur: 80, color: 'rgba(242, 181, 28, 0.11)', dur: 9, delay: 1.5 },
-]
-
 export default function Hero() {
   const sectionRef = useRef(null)
 
-  /* ── Scroll progress for Parallax ── */
+  /* ── Scroll progress ── */
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ['start start', 'end start'],
   })
 
-  /* ── Mouse 3D Camera & Grid Tilt Simulation ── */
+  /* ── Mouse 3D Camera Simulation ── */
   const mouseX = useMotionValue(0)
   const mouseY = useMotionValue(0)
 
-  const smoothRotY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-10, 10]), { stiffness: 60, damping: 25 })
-  const smoothRotX = useSpring(useTransform(mouseY, [-0.5, 0.5], [8, -8]), { stiffness: 60, damping: 25 })
-  const smoothTransX = useSpring(useTransform(mouseX, [-0.5, 0.5], [-25, 25]), { stiffness: 70, damping: 28 })
-  const smoothTransY = useSpring(useTransform(mouseY, [-0.5, 0.5], [-20, 20]), { stiffness: 70, damping: 28 })
+  const smoothRotY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-8, 8]), { stiffness: 60, damping: 25 })
+  const smoothRotX = useSpring(useTransform(mouseY, [-0.5, 0.5], [6, -6]), { stiffness: 60, damping: 25 })
+  const smoothTransX = useSpring(useTransform(mouseX, [-0.5, 0.5], [-15, 15]), { stiffness: 70, damping: 28 })
 
-  /* ── Scroll-driven Background Parallax Zoom & Lift ── */
-  const gridY   = useTransform(scrollYProgress, [0, 1], ['0%', '30%'])
-  const gridRot = useTransform(scrollYProgress, [0, 1], [65, 75])
-  const textY   = useTransform(scrollYProgress, [0, 1], ['0%', '-12%'])
-
-  /* ── Anamorphic Lens Flare Sweep ── */
-  const flareX = useTransform(scrollYProgress, [0, 1], ['-20%', '120%'])
-  const flareOpacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0.35, 0.75, 0.5, 0.2])
+  const textY = useTransform(scrollYProgress, [0, 1], ['0%', '-10%'])
 
   /* ── Spotlight on cursor ── */
   const spotX = useMotionValue('50%')
   const spotY = useMotionValue('50%')
-  const spotlight = useMotionTemplate`radial-gradient(650px circle at ${spotX} ${spotY}, rgba(242,181,28,0.13), transparent 70%)`
+  const spotlight = useMotionTemplate`radial-gradient(650px circle at ${spotX} ${spotY}, rgba(242,181,28,0.14), transparent 70%)`
 
   function handleMouseMove(e) {
     if (!window.matchMedia('(hover: hover)').matches) return
@@ -138,103 +130,43 @@ export default function Hero() {
   return (
     <section
       ref={sectionRef}
-      className="hero hero-parallax-fullbleed hero-tech-mesh"
+      className="hero hero-carlos-stage"
       id="top"
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
     >
-      {/* ━━ Full-Bleed 3D Perspective Tech Matrix Stage ━━ */}
-      <div className="hpf-3d-stage">
-        {/* 3D Interactive Perspective Grid Plane */}
+      {/* Ambient Radial Spotlight & Grid Overlay */}
+      <div className="carlos-bg-grid" aria-hidden="true" />
+      <motion.div className="hero-spotlight" style={{ background: spotlight }} aria-hidden="true" />
+
+      <motion.div className="hero-inner shell carlos-hero-inner" style={{ y: textY }}>
         <motion.div
-          className="hpf-grid-plane"
-          style={{
-            y: gridY,
-            rotateX: gridRot,
-            rotateY: smoothRotX,
-            rotateZ: smoothRotY,
-            x: smoothTransX,
-          }}
-          aria-hidden="true"
-        />
-
-        {/* Anamorphic Lens Flare Streak */}
-        <motion.div
-          className="hpf-anamorphic-flare"
-          style={{
-            left: flareX,
-            opacity: flareOpacity,
-            y: smoothTransY,
-          }}
-          aria-hidden="true"
-        />
-
-        {/* Ambient 3D Bokeh Orbs */}
-        <div className="hpf-bokeh-container" aria-hidden="true">
-          {BOKEH_ORBS.map((orb) => (
-            <motion.div
-              key={orb.id}
-              className="hpf-bokeh-orb"
-              style={{
-                top: orb.top,
-                left: orb.left,
-                right: orb.right,
-                width: orb.size,
-                height: orb.size,
-                background: orb.color,
-                filter: `blur(${orb.blur}px)`,
-                x: smoothTransX,
-                y: smoothTransY,
-              }}
-              animate={{
-                scale: [1, 1.25, 1],
-                opacity: [0.55, 0.85, 0.55],
-              }}
-              transition={{
-                duration: orb.dur,
-                repeat: Infinity,
-                ease: 'easeInOut',
-                delay: orb.delay,
-              }}
-            />
-          ))}
-        </div>
-
-        {/* Vignette & Gradient Overlays for High Legibility */}
-        <div className="hpf-vignette" aria-hidden="true" />
-        <div className="hpf-gradient" aria-hidden="true" />
-        <motion.div className="hero-spotlight" style={{ background: spotlight }} aria-hidden="true" />
-      </div>
-
-      {/* ━━ Content Layer Pinned Over Parallax Background ━━ */}
-      <motion.div className="hero-inner shell hpf-content" style={{ y: textY }}>
-        <motion.div
-          className="hpf-grid"
+          className="carlos-hero-grid"
           initial="hidden"
           animate="visible"
           variants={staggerContainer}
         >
-          {/* Left Column: Designation, Heading, Intro & Social Media */}
-          <motion.div className="hero-copy-block hpf-copy" variants={staggerItem}>
-            {/* Designation Eyebrow */}
-            <div className="hero-eyebrow">
-              <span className="eyebrow-bar" aria-hidden="true" />
+          {/* Left Column: Designation, Heading, Subtitle & Social Links */}
+          <motion.div className="carlos-hero-copy" variants={staggerItem}>
+            {/* Designation Eyebrow Badge */}
+            <div className="carlos-eyebrow">
+              <span className="carlos-eyebrow-dot" />
               <span>CSE Undergrad</span>
               <span className="eyebrow-sep">/</span>
               <span>Software Developer</span>
             </div>
 
-            {/* Heading */}
-            <h1 className="hero-heading hpf-heading">
-              Hi, I&apos;m <em>Priyanshu</em>
+            {/* Main Headline */}
+            <h1 className="carlos-heading">
+              Building digital products, apps &amp; web experiences with <em>Priyanshu</em>
             </h1>
 
             {/* Intro Paragraph */}
-            <p className="hero-intro hpf-intro">
-              A Computer Science undergrad who loves <strong>building and speaking in public</strong>. Check out my social media below to explore my tech talks, videos, and projects.
+            <p className="carlos-intro">
+              A Computer Science undergraduate passionate about <strong>engineering scalable web apps &amp; public speaking</strong>. Explore my tech talks, videos, and production projects below.
             </p>
 
-            {/* Social Media Buttons (YouTube, LinkedIn, X) */}
+            {/* Social Media Buttons */}
             <div className="hero-social-actions">
               <div className="hero-social-group">
                 {heroSocials.map((social) => (
@@ -244,38 +176,61 @@ export default function Hero() {
             </div>
           </motion.div>
 
-          {/* Right Column: Interactive Pop-Up Badges */}
-          <motion.div className="hpf-badges-column" variants={staggerItem}>
+          {/* Right Column: Carlos Dark Studio Portrait Stage */}
+          <motion.div className="carlos-portrait-column" variants={staggerItem}>
             <motion.div
-              className="hero-portrait-tag hpf-hud-badge static-badge"
-              whileHover={{ scale: 1.08, y: -8 }}
-              whileTap={{ scale: 0.96 }}
-              transition={{ type: 'spring', stiffness: 320, damping: 20 }}
+              className="carlos-portrait-card"
+              style={{
+                rotateY: smoothRotY,
+                rotateX: smoothRotX,
+                x: smoothTransX,
+              }}
+              whileHover={{ scale: 1.02 }}
+              transition={{ type: 'spring', stiffness: 260, damping: 20 }}
             >
-              <div className="tag-icon-wrap">
-                <Mic2 size={16} />
+              <div className="carlos-portrait-glow" aria-hidden="true" />
+              <div className="carlos-portrait-frame">
+                <img
+                  src={carlosPortrait}
+                  alt={`${profile.name} portrait`}
+                  fetchPriority="high"
+                  loading="eager"
+                />
               </div>
-              <div className="tag-text">
-                <b>Public Speaker</b>
-                <span>Tech talks on YouTube</span>
-              </div>
-            </motion.div>
-
-            <motion.div
-              className="hero-portrait-tag hpf-hud-badge static-badge"
-              whileHover={{ scale: 1.08, y: -8 }}
-              whileTap={{ scale: 0.96 }}
-              transition={{ type: 'spring', stiffness: 320, damping: 20 }}
-            >
-              <div className="tag-icon-wrap">
-                <Code2 size={16} />
-              </div>
-              <div className="tag-text">
-                <b>Full-stack</b>
-                <span>React, Node.js &amp; App Dev</span>
+              <div className="carlos-portrait-badge">
+                <Sparkles size={14} className="badge-sparkle" />
+                <span>CS Undergrad &amp; Developer</span>
               </div>
             </motion.div>
           </motion.div>
+        </motion.div>
+
+        {/* Carlos Bottom Highlight Metrics Bar */}
+        <motion.div
+          className="carlos-metrics-bar"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6, duration: 0.6 }}
+        >
+          {HERO_METRICS.map((metric) => {
+            const Icon = metric.icon
+            return (
+              <motion.div
+                key={metric.label}
+                className="carlos-metric-card"
+                whileHover={{ scale: 1.04, y: -4 }}
+                transition={{ type: 'spring', stiffness: 300, damping: 18 }}
+              >
+                <div className="metric-icon-box">
+                  <Icon size={18} />
+                </div>
+                <div className="metric-text">
+                  <span className="metric-label">{metric.label}</span>
+                  <b className="metric-value">{metric.value}</b>
+                </div>
+              </motion.div>
+            )
+          })}
         </motion.div>
 
         {/* Scroll Cue */}
