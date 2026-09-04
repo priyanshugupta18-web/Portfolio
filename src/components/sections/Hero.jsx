@@ -10,7 +10,7 @@ import {
 import { ArrowRight } from 'lucide-react'
 import { FaLinkedinIn, FaYoutube } from 'react-icons/fa'
 import { FaSquareXTwitter } from 'react-icons/fa6'
-import priyanshuCarlosExact from '../../assets/priyanshuCarlosExact.jpg'
+import priyanshuCutout from '../../assets/priyanshuCutout.png'
 import { profile } from '../../data/portfolio'
 import { staggerContainer, staggerItem } from '../../lib/animations'
 
@@ -129,7 +129,7 @@ export default function Hero() {
               }}
             >
               <img
-                src={priyanshuCarlosExact}
+                src={priyanshuCutout}
                 alt={`${profile.name} portrait`}
                 className="carlos-exact-portrait-img"
                 fetchPriority="high"
