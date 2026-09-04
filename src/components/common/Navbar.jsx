@@ -46,7 +46,6 @@ export default function Navbar() {
     }
   }, [])
 
-  // Close mobile menu on resize to desktop
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 768) {
@@ -71,35 +70,44 @@ export default function Navbar() {
     >
       <nav className="nav shell" aria-label="Main navigation">
         <a
-          className="brand"
+          className="carlos-brand"
           href="#top"
           aria-label={`${profile.name}, home`}
           onClick={() => handleNavClick('#top')}
         >
-          <motion.span
-            className="nav-mark"
-            aria-hidden="true"
-            whileHover={{ scale: 1.06, rotate: -4 }}
-            whileTap={{ scale: 0.96 }}
+          <motion.div
+            className="carlos-logo-mark"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
           >
-            P
-          </motion.span>
-          <span className="brand-copy">
-            <span className="wordmark">{profile.name}</span>
-          </span>
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M16 6C10.4772 6 6 10.4772 6 16C6 21.5228 10.4772 26 16 26C21.5228 26 26 21.5228 26 16H16V6Z" fill="#F4B836"/>
+              <path d="M16 6C21.5228 6 26 10.4772 26 16C26 21.5228 21.5228 26 16 26V6Z" fill="#F4B836" fillOpacity="0.85"/>
+            </svg>
+          </motion.div>
         </a>
 
         <div className="nav-links desktop-only">
-          {profile.navItems.map((item) => (
-            <a
-              href={item.href}
-              key={item.href}
-              className={active === item.href ? 'is-active' : undefined}
-              onClick={() => handleNavClick(item.href)}
-            >
-              {item.label}
-            </a>
-          ))}
+          {profile.navItems.map((item) => {
+            const isActive = active === item.href
+            return (
+              <a
+                href={item.href}
+                key={item.href}
+                className={`carlos-nav-link${isActive ? ' is-active' : ''}`}
+                onClick={() => handleNavClick(item.href)}
+              >
+                <span>{item.label}</span>
+                {isActive && (
+                  <motion.span
+                    layoutId="carlosActiveDot"
+                    className="carlos-nav-dot"
+                    transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                  />
+                )}
+              </a>
+            )
+          })}
         </div>
 
         <button
@@ -109,7 +117,7 @@ export default function Navbar() {
           aria-expanded={menuOpen}
           aria-label={menuOpen ? 'Close navigation menu' : 'Open navigation menu'}
         >
-          {menuOpen ? <X size={20} /> : <Menu size={20} />}
+          {menuOpen ? <X size={22} /> : <Menu size={22} />}
         </button>
       </nav>
 

@@ -11,19 +11,19 @@
   --font-serif: 'Instrument Serif', Georgia, serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
-  --bg: #08080a;
-  --surface: #121215;
-  --surface-card: #17171b;
-  --surface-card-hover: #202026;
-  --ink: #f5f4f0;
-  --ink-soft: #a1a1aa;
-  --muted: #71717a;
-  --line: rgba(255, 255, 255, 0.08);
+  --bg: #20242C;
+  --surface: #262B34;
+  --surface-card: #2B303B;
+  --surface-card-hover: #323744;
+  --ink: #ffffff;
+  --ink-soft: #9EA5B4;
+  --muted: #6E7585;
+  --line: rgba(255, 255, 255, 0.09);
   --line-strong: rgba(255, 255, 255, 0.18);
-  --accent: #f2b51c;
-  --accent-soft: rgba(242, 181, 28, 0.12);
-  --accent-glow: rgba(242, 181, 28, 0.25);
-  --accent-secondary: #b142d6;
+  --accent: #F4B836;
+  --accent-soft: rgba(244, 184, 54, 0.14);
+  --accent-glow: rgba(244, 184, 54, 0.28);
+  --accent-secondary: #E89E28;
 
   font-family: var(--font-body);
   color: var(--ink);
@@ -211,105 +211,72 @@ section[id] {
    Header & Navigation (Sleek Floating Glass Bar)
    ========================================================================== */
 .nav-wrap {
-  position: fixed;
+  position: absolute;
   z-index: 50;
-  top: clamp(14px, 2vw, 22px);
+  top: 0;
   left: 0;
   right: 0;
-  pointer-events: none;
-  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  padding-top: clamp(24px, 3.5vw, 40px);
+  pointer-events: auto;
 }
 
 .nav {
-  height: 56px;
-  padding: 0 16px;
+  height: 60px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-radius: 999px;
   background: transparent;
-  border: 1px solid transparent;
-  pointer-events: auto;
-  transition: background-color 0.35s, border-color 0.35s, box-shadow 0.35s, padding 0.35s;
+  border: none;
+  box-shadow: none;
 }
 
-/* Scrolled state: Morph into a sleek floating glass capsule */
-.nav-wrap--scrolled .nav {
-  max-width: 920px;
-  background: rgba(14, 13, 16, 0.78);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(242, 181, 28, 0.22);
-  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.45), 0 0 20px rgba(242, 181, 28, 0.1);
-  padding: 0 20px;
-}
-
-.brand {
+.carlos-brand {
   display: flex;
   align-items: center;
-  gap: 11px;
-  font-size: 15px;
-  font-weight: 700;
-  letter-spacing: -0.01em;
+  text-decoration: none;
 }
 
-.nav-mark {
-  width: 36px;
-  height: 36px;
+.carlos-logo-mark {
   display: grid;
   place-items: center;
-  flex: 0 0 auto;
-  border-radius: 11px;
-  color: #171411;
-  background: var(--accent);
-  font-size: 15px;
-  font-weight: 800;
-  font-family: var(--font-heading);
-  box-shadow: 0 6px 18px rgba(242, 181, 28, 0.25);
-}
-
-.brand-copy {
-  display: flex;
-  flex-direction: column;
-}
-
-.wordmark {
-  color: var(--ink);
-  font-family: var(--font-heading);
-  font-size: 15.5px;
-  font-weight: 750;
-  line-height: 1;
-  letter-spacing: -0.02em;
 }
 
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 32px;
 }
 
-.nav-links a {
-  min-height: 36px;
+.carlos-nav-link {
+  position: relative;
   display: inline-flex;
+  flex-direction: column;
   align-items: center;
-  padding: 0 15px;
-  border-radius: 999px;
-  color: rgba(245, 244, 240, 0.75);
-  font-size: 13.5px;
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 16px;
   font-weight: 500;
-  transition: color 0.2s, background-color 0.2s;
+  text-decoration: none;
+  transition: color 0.2s ease;
+  padding: 4px 0;
 }
 
-.nav-links a:hover {
-  color: #fff;
-  background: rgba(255, 255, 255, 0.08);
+.carlos-nav-link:hover {
+  color: rgba(255, 255, 255, 0.85);
 }
 
-.nav-links a.is-active {
-  color: #171411;
-  background: var(--accent);
-  font-weight: 750;
-  box-shadow: 0 4px 14px rgba(242, 181, 28, 0.3);
+.carlos-nav-link.is-active {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.carlos-nav-dot {
+  position: absolute;
+  bottom: -6px;
+  width: 5px;
+  height: 5px;
+  background-color: var(--accent);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--accent);
 }
 
 .nav-toggle {
@@ -424,38 +391,34 @@ section[id] {
 .carlos-social-row {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 18px;
 }
 
 .carlos-social-link {
   display: grid;
   place-items: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  color: var(--ink-soft);
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  transition: color 0.25s, background-color 0.25s, border-color 0.25s, transform 0.25s;
+  color: rgba(255, 255, 255, 0.55);
+  background: transparent;
+  border: none;
+  transition: color 0.2s ease, transform 0.2s ease;
 }
 
 .carlos-social-link:hover {
-  color: #111113;
-  background: var(--accent);
-  border-color: var(--accent);
-  transform: translateY(-3px);
+  color: var(--accent);
+  transform: translateY(-2px);
 }
 
 /* Middle Column: Seamless Priyanshu Portrait (NO inner frame or box) */
 .carlos-center-portrait-column {
   display: flex;
   justify-content: center;
+  align-items: flex-end;
 }
 
 .carlos-seamless-portrait {
   position: relative;
-  width: min(100%, 440px);
-  height: 520px;
+  width: min(100%, 460px);
+  height: 560px;
   display: flex;
   justify-content: center;
   align-items: flex-end;
@@ -470,7 +433,7 @@ section[id] {
   display: block;
   border-radius: 0;
   background: transparent;
-  filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.7)) contrast(1.05);
+  filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.45));
 }
 
 /* Right Column: Introduction & Story Button */
@@ -484,24 +447,22 @@ section[id] {
   display: flex;
   align-items: center;
   gap: 8px;
-  color: var(--muted);
-  font-family: var(--font-mono);
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  color: var(--ink-soft);
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
   margin-bottom: 16px;
 }
 
 .eyebrow-dash {
-  color: var(--accent);
-  font-weight: 700;
+  color: var(--ink-soft);
+  font-weight: 400;
 }
 
 .carlos-intro-headline {
   margin: 0 0 16px;
   font-size: clamp(24px, 2.6vw, 36px);
-  line-height: 1.25;
+  line-height: 1.28;
   font-weight: 750;
   color: #ffffff;
   letter-spacing: -0.025em;
@@ -510,25 +471,23 @@ section[id] {
 .carlos-intro-desc {
   margin: 0 0 28px;
   color: var(--ink-soft);
-  font-size: clamp(14.5px, 1.2vw, 16px);
+  font-size: clamp(14.5px, 1.2vw, 15.5px);
   line-height: 1.7;
 }
 
 .carlos-story-btn {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding-bottom: 4px;
-  border-bottom: 2px solid var(--accent);
-  color: #ffffff;
-  font-size: 14.5px;
+  gap: 10px;
+  color: var(--accent);
+  font-size: 15.5px;
   font-weight: 700;
-  transition: color 0.25s, border-color 0.25s, gap 0.25s;
+  text-decoration: none;
+  transition: gap 0.25s ease, transform 0.25s ease;
 }
 
 .carlos-story-btn:hover {
-  color: var(--accent);
-  gap: 12px;
+  gap: 14px;
 }
 
 .hpf-content {
